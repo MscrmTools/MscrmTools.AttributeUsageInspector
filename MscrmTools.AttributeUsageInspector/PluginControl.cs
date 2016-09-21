@@ -43,6 +43,11 @@ namespace MscrmTools.AttributeUsageInspector
 
         #region Form events
 
+        private void tsbClose_Click(object sender, EventArgs e)
+        {
+            CloseTool();
+        }
+
         private void tsbLoadEntities_Click(object sender, EventArgs e)
         {
             ExecuteMethod(LoadEntities);

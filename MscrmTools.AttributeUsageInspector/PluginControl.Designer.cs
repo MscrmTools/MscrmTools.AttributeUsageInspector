@@ -93,6 +93,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.tsbClose.Name = "tsbClose";
             this.tsbClose.Size = new System.Drawing.Size(28, 29);
             this.tsbClose.Text = "Close";
+            this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
             // 
             // toolStripSeparator1
             // 
