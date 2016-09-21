@@ -37,9 +37,9 @@ namespace MscrmTools.AttributeUsageInspector
                 i++;
                 sheet.Cells[i, 1].Value = result.Attribute.DisplayName.UserLocalizedLabel?.Label;
                 sheet.Cells[i, 2].Value = result.Attribute.LogicalName;
-                sheet.Cells[i, 2].Value = result.Attribute.AttributeType.Value;
-                sheet.Cells[i, 2].Value = data.AttributeIsContainedInForms(result.Attribute.LogicalName);
-                sheet.Cells[i, 3].Value = result.Percentage;
+                sheet.Cells[i, 3].Value = result.Attribute.AttributeType.Value;
+                sheet.Cells[i, 4].Value = data.AttributeIsContainedInForms(result.Attribute.LogicalName);
+                sheet.Cells[i, 5].Value = result.Percentage;
             }
         }
 
