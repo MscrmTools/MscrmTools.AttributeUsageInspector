@@ -144,12 +144,31 @@
   <data name="tsbExportToExcel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAEQSURBVDhPrVK7isJQFAzYi6UWln7C1uLWFhamDuRJAins
-        7f0Daxu/YX9gbW3Ffu3URkXczaoz4Vy5xJBEcGA499zMzH3F0BEEwdB13S/HcX5QtzJdjDiO6xB/0mDb
-        9q/v+4nUm0iKAfE/xeA1w2oBEF5ArvoHnkgVoFPkz8DHBFyDY1bOMYwmz/O6OFqf41ScB4h53iMusMMe
-        ppYK0JmK88AAGmD8Zo+6VAFRFDXR98oCePa9tAa2PFUBOuXzMyA+QDADB+DOsqwG6pkmPq/MF16iWmUB
-        bmCaoPJiK+9gld0y+vTfEEk5TNOs4bI+sPocRj7pY1U9SJ8vRBiGbQSOOM4aKocoKEMeRfIa3mw2jDtE
-        y+iebA+2AQAAAABJRU5ErkJggg==
+        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAETSURBVDhPrVK7isJQFAzYi6VbWPoJ1uLWFhamDnmTQAp7
+        e//A2sZv8Ae0tRV77XSb3UV0fexMOFcuMcQIDgznnpuZua8YOsIw7HueN3Ndd4O6k+liJElShfiTBtu2
+        T0EQnKXeRFIMiC8Ug9cMywVAeAS56h/4S6oAnSJ/BD6ewTU4ZOUcw2jyfb+No3U5TsV5gJjn/cEFNtnD
+        9KECdKbiPDCABhjn7FGXKiCO4zr6zrMAnv1LWgNbHqsAnfL5ERB/QzABe+Desqwa6oEmPq/MF16iWmUB
+        bmEaofJiy+3AcZxVdsvo039DJM9hmmYFl9XC6lMY+aT3VfUgfb4QURQ1EDjgOGsoHaKgDHkUyWt4s9kw
+        /gGzfuhoe6g5ZwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="tsbSettings.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAMHSURBVDhPdZNbSJNhGMd3FV0ZFpReRZOEFDUKb7ysCMIg
+        SDsIHaCrhMBjzk3d5tTZnM3s5GLLedrJnTxtbuqYmmRz05yHSKe2zXDOwzwk3QT++945swP94OHje5/n
+        9z4fz8NH+xtmEafc0NaBzi4TKp9UIS+f0a5QKOJlzfKvaq0eRpMFcrUGjXLlRINSGRPW9igu4ak6Oo3Y
+        3QV4FfyllJSUtMxHWdc1OgNmZt3YCG5iZXUNHo8PfX021Dc2I6zSaBxeRSvpsLW1DY1OTxIJVBx+/Uay
+        Mzk1Dbd7Hob2LrQo1BBL3kIsrUedRHpwgfDpM6wEVjA6No6JiSkUFBbJyLmo9gW8vkWYLb3o6elDzfOX
+        RDr/K/iC6japrAm+xUXYBofgomRS/JjBBJvLq60UCOHxejH8YQT2EScE1aKDroRKQRUWFjwwdltgG3gH
+        iVSGnLx8+P1+qFp14JSW4fOMG07nGOyOUYzYHSjnC6gZVYJPDZnGKmFbZY1y9Fpt0OkNSD6XfPV+xu22
+        Vnkz/D4PuFwexsddeD9sh8s1ibXVVWwGNzA3N4diNmeTfASdySqxlpfzwSossFLvh6g4Sc+XrCWxGrG+
+        5IPDbkeLXInsnFzUCKtQWlyE3KwsB1WXRC4g0KkgQyFPWkSpuSldO4/hTaDM+gV9xk5w2Gw8zs1WhutI
+        xJLafzjCMSkyjR44gsCdrhVc0q3iLFOKgHce7Sr5jzT9rCSCa9aEy//kKLdbeVPrDsl3u5aRqvMjQfwJ
+        8QzpereqIcDpnoFjB7ihncOxUpMqrO1xgmfSXqj/COcGwBgKIlW7hCTxNI4XKI1UOjEiX6G72BrArY4A
+        xr4B6YppEGfPpogTDWBiG7hnDFCyH4lU58gCtYVKnSL5KLbenCCexGX1EjI6lzH5HSAOyYWIEw3iYW8Q
+        1wzLSKhzIZJxIIeJiWLILfGvxnFF48cD8zrOUE44R6NFF6r6Y4UDiKmyIYqpIuv8Xd6HHl2otNKF/Thd
+        PQDihM9DkF9zf0Whdf6H/ZVTQYv5Cam48gu50oG3AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="lblWhatNextOnline.Text" xml:space="preserve">

@@ -58,6 +58,8 @@ namespace MscrmTools.AttributeUsageInspector
             this.clLogicalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clOnForm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbSettings = new System.Windows.Forms.ToolStripButton();
             this.tsMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scInspector)).BeginInit();
             this.scInspector.Panel1.SuspendLayout();
@@ -78,7 +80,9 @@ namespace MscrmTools.AttributeUsageInspector
             this.toolStripSeparator1,
             this.tsbLoadEntities,
             this.toolStripSeparator2,
-            this.tsbExportToExcel});
+            this.tsbExportToExcel,
+            this.toolStripSeparator3,
+            this.tsbSettings});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Size = new System.Drawing.Size(1631, 32);
@@ -371,6 +375,22 @@ namespace MscrmTools.AttributeUsageInspector
             this.clOnForm.Name = "clOnForm";
             this.clOnForm.ReadOnly = true;
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 32);
+            // 
+            // tsbSettings
+            // 
+            this.tsbSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSettings.Image = ((System.Drawing.Image)(resources.GetObject("tsbSettings.Image")));
+            this.tsbSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSettings.Name = "tsbSettings";
+            this.tsbSettings.Size = new System.Drawing.Size(28, 29);
+            this.tsbSettings.Text = "Settings";
+            this.tsbSettings.ToolTipText = "Define number of records returned per call";
+            this.tsbSettings.Click += new System.EventHandler(this.tsbSettings_Click);
+            // 
             // PluginControl
             // 
             this.Controls.Add(this.scInspector);
@@ -424,5 +444,7 @@ namespace MscrmTools.AttributeUsageInspector
         private System.Windows.Forms.DataGridViewTextBoxColumn clLogicalName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clOnForm;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton tsbSettings;
     }
 }

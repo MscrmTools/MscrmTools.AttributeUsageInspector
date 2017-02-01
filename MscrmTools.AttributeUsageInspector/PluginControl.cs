@@ -15,9 +15,16 @@ namespace MscrmTools.AttributeUsageInspector
     {
         private readonly List<DetectionResults> globalResults;
 
+        private readonly Settings settings;
+
         public PluginControl()
         {
             InitializeComponent();
+
+            if (!SettingsManager.Instance.TryLoad(typeof(PluginControl), out settings))
+            {
+                settings = new Settings{RecordsReturnedPerTrip = 1000};
+            }
 
             if (dgvData.Columns.Count < 5)
             {
@@ -178,7 +185,7 @@ namespace MscrmTools.AttributeUsageInspector
                     var de = new DetectiveEngine(Service);
                     var emd =((Tuple<EntityMetadata, bool>)e.Argument).Item1;
                     var useStdQueries = ((Tuple<EntityMetadata, bool>)e.Argument).Item2;
-                    DetectionResults result = de.GetUsage(emd, useStdQueries, w);
+                    DetectionResults result = de.GetUsage(emd, useStdQueries, settings, w);
 
                     w.ReportProgress(0, "Loading forms definitions...");
                     result.Forms = MetadataHelper.GetFormsDefinitions(emd.ObjectTypeCode.Value, Service);
@@ -253,10 +260,10 @@ namespace MscrmTools.AttributeUsageInspector
                         var result = globalResults.FirstOrDefault(r => r.Entity == emd.LogicalName);
                         if (result == null)
                         {
-                            result = de.GetUsage(emd, false);
+                            result = de.GetUsage(emd, false, settings);
                             if (result.IsAggregateQueryRecordLimitReached)
                             {
-                                result = de.GetUsage(emd, true);
+                                result = de.GetUsage(emd, true, settings);
                             }
                         }
 
@@ -299,5 +306,15 @@ namespace MscrmTools.AttributeUsageInspector
         }
 
         #endregion
+
+        private void tsbSettings_Click(object sender, EventArgs e)
+        {
+            var dialog = new SettingsDialog(settings.RecordsReturnedPerTrip);
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                settings.RecordsReturnedPerTrip = dialog.NumberOfRecordsPerCall;
+                SettingsManager.Instance.Save(typeof(PluginControl), settings);
+            }
+        }
     }
 }

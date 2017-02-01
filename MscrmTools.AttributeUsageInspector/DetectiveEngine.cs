@@ -21,7 +21,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.service = service;
         }
 
-        public DetectionResults GetUsage(EntityMetadata emd, bool useStdQueries, BackgroundWorker worker = null)
+        public DetectionResults GetUsage(EntityMetadata emd, bool useStdQueries, Settings settings, BackgroundWorker worker = null)
         {
             var result = new DetectionResults();
 
@@ -33,7 +33,7 @@ namespace MscrmTools.AttributeUsageInspector
                 {
                     PageInfo = new PagingInfo
                     {
-                        Count = 5000,
+                        Count = settings.RecordsReturnedPerTrip,
                         PageNumber = 1
                     },
                     ColumnSet = new ColumnSet(true),
