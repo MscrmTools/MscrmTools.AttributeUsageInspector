@@ -26,8 +26,8 @@ namespace MscrmTools.AttributeUsageInspector
             }
 
             int i = 1;
-            sheet.Cells[i, 1].Value = "Logical name";
-            sheet.Cells[i, 2].Value = "Display name";
+            sheet.Cells[i, 1].Value = "Displayname";
+            sheet.Cells[i, 2].Value = "Logical name";
             sheet.Cells[i, 3].Value = "Attribute Type";
             sheet.Cells[i, 4].Value = "On Form(s)";
             sheet.Cells[i, 5].Value = "Data usage";
