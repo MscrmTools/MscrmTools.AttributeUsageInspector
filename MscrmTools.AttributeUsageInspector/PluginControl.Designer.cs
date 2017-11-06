@@ -40,11 +40,6 @@ namespace MscrmTools.AttributeUsageInspector
             this.scInspector = new System.Windows.Forms.SplitContainer();
             this.gbEntities = new System.Windows.Forms.GroupBox();
             this.gbData = new System.Windows.Forms.GroupBox();
-            this.dgvData = new System.Windows.Forms.DataGridView();
-            this.clDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clLogicalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clOnForm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCount = new System.Windows.Forms.Label();
             this.pnlAggregateQueryRecordLimit = new System.Windows.Forms.Panel();
@@ -63,6 +58,14 @@ namespace MscrmTools.AttributeUsageInspector
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.pnlFilterInfo = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblFilterInfo = new System.Windows.Forms.Label();
+            this.dgvData = new System.Windows.Forms.DataGridView();
+            this.clDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clLogicalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clOnForm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scInspector)).BeginInit();
             this.scInspector.Panel1.SuspendLayout();
@@ -70,11 +73,12 @@ namespace MscrmTools.AttributeUsageInspector
             this.scInspector.SuspendLayout();
             this.gbEntities.SuspendLayout();
             this.gbData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.panel1.SuspendLayout();
             this.pnlAggregateQueryRecordLimit.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.pnlFilterInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
             // 
             // tsMain
@@ -180,6 +184,7 @@ namespace MscrmTools.AttributeUsageInspector
             // gbData
             // 
             this.gbData.Controls.Add(this.dgvData);
+            this.gbData.Controls.Add(this.pnlFilterInfo);
             this.gbData.Controls.Add(this.panel1);
             this.gbData.Controls.Add(this.pnlAggregateQueryRecordLimit);
             this.gbData.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -189,51 +194,6 @@ namespace MscrmTools.AttributeUsageInspector
             this.gbData.TabIndex = 1;
             this.gbData.TabStop = false;
             this.gbData.Text = "Data";
-            // 
-            // dgvData
-            // 
-            this.dgvData.AllowUserToAddRows = false;
-            this.dgvData.AllowUserToDeleteRows = false;
-            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clDisplayName,
-            this.clLogicalName,
-            this.clType,
-            this.clOnForm});
-            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvData.Location = new System.Drawing.Point(3, 16);
-            this.dgvData.Name = "dgvData";
-            this.dgvData.ReadOnly = true;
-            this.dgvData.RowTemplate.Height = 28;
-            this.dgvData.Size = new System.Drawing.Size(1078, 902);
-            this.dgvData.TabIndex = 3;
-            // 
-            // clDisplayName
-            // 
-            this.clDisplayName.HeaderText = "Display Name";
-            this.clDisplayName.Name = "clDisplayName";
-            this.clDisplayName.ReadOnly = true;
-            this.clDisplayName.Width = 200;
-            // 
-            // clLogicalName
-            // 
-            this.clLogicalName.HeaderText = "Logical Name";
-            this.clLogicalName.Name = "clLogicalName";
-            this.clLogicalName.ReadOnly = true;
-            this.clLogicalName.Width = 200;
-            // 
-            // clType
-            // 
-            this.clType.HeaderText = "Attribute Type";
-            this.clType.Name = "clType";
-            this.clType.ReadOnly = true;
-            this.clType.Width = 150;
-            // 
-            // clOnForm
-            // 
-            this.clOnForm.HeaderText = "On Form(s)";
-            this.clOnForm.Name = "clOnForm";
-            this.clOnForm.ReadOnly = true;
             // 
             // panel1
             // 
@@ -424,6 +384,82 @@ namespace MscrmTools.AttributeUsageInspector
             this.label4.TabIndex = 1;
             this.label4.Text = "Search";
             // 
+            // pnlFilterInfo
+            // 
+            this.pnlFilterInfo.BackColor = System.Drawing.SystemColors.Info;
+            this.pnlFilterInfo.Controls.Add(this.lblFilterInfo);
+            this.pnlFilterInfo.Controls.Add(this.label5);
+            this.pnlFilterInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlFilterInfo.Location = new System.Drawing.Point(3, 16);
+            this.pnlFilterInfo.Name = "pnlFilterInfo";
+            this.pnlFilterInfo.Size = new System.Drawing.Size(1078, 20);
+            this.pnlFilterInfo.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Tag = "Statistics based on {0} records";
+            // 
+            // lblFilterInfo
+            // 
+            this.lblFilterInfo.AutoSize = true;
+            this.lblFilterInfo.Location = new System.Drawing.Point(5, 5);
+            this.lblFilterInfo.Name = "lblFilterInfo";
+            this.lblFilterInfo.Size = new System.Drawing.Size(469, 13);
+            this.lblFilterInfo.TabIndex = 1;
+            this.lblFilterInfo.Text = "You can filter attributes displayed by enabling attributes filtering in settings," +
+    " then selecting an entity.";
+            // 
+            // dgvData
+            // 
+            this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToDeleteRows = false;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clDisplayName,
+            this.clLogicalName,
+            this.clType,
+            this.clOnForm});
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvData.Location = new System.Drawing.Point(3, 36);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.ReadOnly = true;
+            this.dgvData.RowTemplate.Height = 28;
+            this.dgvData.Size = new System.Drawing.Size(1078, 882);
+            this.dgvData.TabIndex = 6;
+            // 
+            // clDisplayName
+            // 
+            this.clDisplayName.HeaderText = "Display Name";
+            this.clDisplayName.Name = "clDisplayName";
+            this.clDisplayName.ReadOnly = true;
+            this.clDisplayName.Width = 200;
+            // 
+            // clLogicalName
+            // 
+            this.clLogicalName.HeaderText = "Logical Name";
+            this.clLogicalName.Name = "clLogicalName";
+            this.clLogicalName.ReadOnly = true;
+            this.clLogicalName.Width = 200;
+            // 
+            // clType
+            // 
+            this.clType.HeaderText = "Attribute Type";
+            this.clType.Name = "clType";
+            this.clType.ReadOnly = true;
+            this.clType.Width = 150;
+            // 
+            // clOnForm
+            // 
+            this.clOnForm.HeaderText = "On Form(s)";
+            this.clOnForm.Name = "clOnForm";
+            this.clOnForm.ReadOnly = true;
+            // 
             // PluginControl
             // 
             this.Controls.Add(this.scInspector);
@@ -438,13 +474,15 @@ namespace MscrmTools.AttributeUsageInspector
             this.scInspector.ResumeLayout(false);
             this.gbEntities.ResumeLayout(false);
             this.gbData.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnlAggregateQueryRecordLimit.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.pnlFilterInfo.ResumeLayout(false);
+            this.pnlFilterInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -472,16 +510,19 @@ namespace MscrmTools.AttributeUsageInspector
         private System.Windows.Forms.Label lblAggregateQueryRecordLimit;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton tsbSettings;
-        private System.Windows.Forms.DataGridView dgvData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clDisplayName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clLogicalName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clOnForm;
         private System.Windows.Forms.ListView lvEntities;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Panel pnlFilterInfo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblFilterInfo;
+        private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clDisplayName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clLogicalName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clOnForm;
     }
 }
