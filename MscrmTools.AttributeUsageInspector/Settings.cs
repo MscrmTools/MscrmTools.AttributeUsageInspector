@@ -6,10 +6,10 @@
 
         public int RecordsReturnedPerTrip
         {
-            get { return recordsReturnedPerTrip;}
-            set {
-                recordsReturnedPerTrip = value > 5000 ? 5000 : value;
-            }
+            get => recordsReturnedPerTrip;
+            set => recordsReturnedPerTrip = value > 5000 ? 5000 : value;
         }
+
+        public int AttributesReturnedPerTrip { get; set; }
     }
 }

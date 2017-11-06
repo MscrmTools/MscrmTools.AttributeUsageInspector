@@ -23,7 +23,13 @@ namespace MscrmTools.AttributeUsageInspector
 
             if (!SettingsManager.Instance.TryLoad(typeof(PluginControl), out settings))
             {
-                settings = new Settings{RecordsReturnedPerTrip = 1000};
+                settings = new Settings { RecordsReturnedPerTrip = 1000, AttributesReturnedPerTrip = 50 };
+            }
+
+            if (settings.AttributesReturnedPerTrip == 0)
+            {
+                settings.AttributesReturnedPerTrip = 50;
+                SettingsManager.Instance.Save(typeof(PluginControl), settings);
             }
 
             if (dgvData.Columns.Count < 5)
@@ -42,11 +48,12 @@ namespace MscrmTools.AttributeUsageInspector
         #region Interfaces members
 
         public event EventHandler<StatusBarMessageEventArgs> SendMessageToStatusBar;
+
         public string RepositoryName { get { return "MscrmTools.AttributeUsageInspector"; } }
         public string UserName { get { return "MscrmTools"; } }
         public string HelpUrl { get { return "https://github.com/MscrmTools/MscrmTools.AttributeUsageInspector/wiki"; } }
 
-        #endregion
+        #endregion Interfaces members
 
         #region Form events
 
@@ -120,7 +127,7 @@ namespace MscrmTools.AttributeUsageInspector
             }
         }
 
-        #endregion
+        #endregion Form events
 
         #region Business methods
 
@@ -147,7 +154,7 @@ namespace MscrmTools.AttributeUsageInspector
 
                     var items = new List<ListViewItem>();
 
-                    foreach (var emd in (EntityMetadataCollection) e.Result)
+                    foreach (var emd in (EntityMetadataCollection)e.Result)
                     {
                         var item = new ListViewItem(emd.DisplayName.UserLocalizedLabel != null ? emd.DisplayName.UserLocalizedLabel.Label : "N/A");
                         item.SubItems.Add(emd.LogicalName);
@@ -167,7 +174,7 @@ namespace MscrmTools.AttributeUsageInspector
                 }
             });
         }
-        
+
         public void LoadDataUsage(bool useQueries)
         {
             dgvData.Rows.Clear();
@@ -183,7 +190,7 @@ namespace MscrmTools.AttributeUsageInspector
                 Work = (w, e) =>
                 {
                     var de = new DetectiveEngine(Service);
-                    var emd =((Tuple<EntityMetadata, bool>)e.Argument).Item1;
+                    var emd = ((Tuple<EntityMetadata, bool>)e.Argument).Item1;
                     var useStdQueries = ((Tuple<EntityMetadata, bool>)e.Argument).Item2;
                     DetectionResults result = de.GetUsage(emd, useStdQueries, settings, w);
 
@@ -202,7 +209,7 @@ namespace MscrmTools.AttributeUsageInspector
                     var results = (DetectionResults)e.Result;
 
                     var currentEntityResult = globalResults.FirstOrDefault(
-                        r => r.Entity == ((EntityMetadata) lvEntities.SelectedItems[0].Tag).LogicalName);
+                        r => r.Entity == ((EntityMetadata)lvEntities.SelectedItems[0].Tag).LogicalName);
                     if (currentEntityResult != null)
                     {
                         globalResults.Remove(currentEntityResult);
@@ -240,7 +247,7 @@ namespace MscrmTools.AttributeUsageInspector
                 }
             });
         }
-     
+
         public void ExportToExcel()
         {
             WorkAsync(new WorkAsyncInfo
@@ -284,7 +291,7 @@ namespace MscrmTools.AttributeUsageInspector
                         MessageBox.Show(e.Error.ToString());
                     }
 
-                    var sfd = new SaveFileDialog { Filter="Excel Workbook|*.xlsx"};
+                    var sfd = new SaveFileDialog { Filter = "Excel Workbook|*.xlsx" };
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
                         ((ExcelEngine)e.Result).Save(sfd.FileName);
@@ -305,7 +312,7 @@ namespace MscrmTools.AttributeUsageInspector
             });
         }
 
-        #endregion
+        #endregion Business methods
 
         private void tsbSettings_Click(object sender, EventArgs e)
         {

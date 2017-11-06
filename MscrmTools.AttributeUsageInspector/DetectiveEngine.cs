@@ -9,12 +9,11 @@ using Microsoft.Xrm.Sdk.Query;
 
 namespace MscrmTools.AttributeUsageInspector
 {
-    class DetectiveEngine
+    internal class DetectiveEngine
     {
         private readonly IOrganizationService service;
 
-        const string FetchXml = "<fetch mapping=\"logical\" aggregate=\"true\" count=\"5000\"><entity name=\"{0}\">{1}<filter>{2}</filter></entity></fetch>";
-
+        private const string FetchXml = "<fetch mapping=\"logical\" aggregate=\"true\" count=\"{3}\"><entity name=\"{0}\">{1}<filter>{2}</filter></entity></fetch>";
 
         public DetectiveEngine(IOrganizationService service)
         {
@@ -98,12 +97,13 @@ namespace MscrmTools.AttributeUsageInspector
                     Requests = new OrganizationRequestCollection()
                 };
 
-                var fetchXmlAttrPart = string.Format("<attribute name=\"{0}\" aggregate=\"count\" alias=\"count\"/>",
-                    emd.PrimaryIdAttribute);
+                var fetchXmlAttrPart = $"<attribute name=\"{emd.PrimaryIdAttribute}\" aggregate=\"count\" alias=\"count\"/>";
                 emRequest.Requests.Add(new RetrieveMultipleRequest
                 {
-                    Query = new FetchExpression(string.Format(FetchXml, emd.LogicalName, fetchXmlAttrPart, ""))
+                    Query = new FetchExpression(string.Format(FetchXml, emd.LogicalName, fetchXmlAttrPart, "", settings.RecordsReturnedPerTrip))
                 });
+
+                var allResult = new ExecuteMultipleResponseItemCollection();
 
                 foreach (var attribute in emd.Attributes.Where(a =>
                     a.AttributeOf == null
@@ -115,31 +115,47 @@ namespace MscrmTools.AttributeUsageInspector
                 {
                     attributes.Add(attribute);
 
-                    var fetchXmlConditionNotNullPart = string.Format(
-                        "<condition attribute=\"{0}\" operator=\"not-null\"/>", attribute.LogicalName);
+                    var fetchXmlConditionNotNullPart = $"<condition attribute=\"{attribute.LogicalName}\" operator=\"not-null\"/>";
                     emRequest.Requests.Add(new RetrieveMultipleRequest
                     {
                         Query =
                             new FetchExpression(string.Format(FetchXml, emd.LogicalName, fetchXmlAttrPart,
-                                fetchXmlConditionNotNullPart))
+                                fetchXmlConditionNotNullPart, settings.RecordsReturnedPerTrip))
                     });
+
+                    if (emRequest.Requests.Count == settings.AttributesReturnedPerTrip)
+                    {
+                        var tempResults = (ExecuteMultipleResponse)service.Execute(emRequest);
+                        allResult.AddRange(tempResults.Responses);
+
+                        emRequest = new ExecuteMultipleRequest
+                        {
+                            Settings = new ExecuteMultipleSettings
+                            {
+                                ContinueOnError = true,
+                                ReturnResponses = true
+                            },
+                            Requests = new OrganizationRequestCollection()
+                        };
+                    }
                 }
 
-                var results = (ExecuteMultipleResponse) service.Execute(emRequest);
-               
-                var allResponse = (RetrieveMultipleResponse) results.Responses[0].Response;
+                var results = (ExecuteMultipleResponse)service.Execute(emRequest);
+                allResult.AddRange(results.Responses);
 
-                if (results.Responses[0].Fault != null)
+                var allResponse = (RetrieveMultipleResponse)allResult[0].Response;
+
+                if (allResult[0].Fault != null)
                 {
-                    result.IsAggregateQueryRecordLimitReached = results.Responses[0].Fault.ErrorCode == -2147164125;
-                    result.Fault = results.Responses[0].Fault;
+                    result.IsAggregateQueryRecordLimitReached = allResult[0].Fault.ErrorCode == -2147164125;
+                    result.Fault = allResult[0].Fault;
                     return result;
                 }
 
                 var allCount = allResponse != null
                     ? allResponse.EntityCollection.Entities.First().GetAttributeValue<AliasedValue>("count")
                     : null;
-                var allCountValue = allCount != null ? (int) allCount.Value : 0;
+                var allCountValue = allCount != null ? (int)allCount.Value : 0;
 
                 result.Total = allCountValue;
                 result.Entity = emd.LogicalName;
@@ -147,7 +163,7 @@ namespace MscrmTools.AttributeUsageInspector
                 foreach (var attribute in attributes)
                 {
                     var index = attributes.IndexOf(attribute);
-                    var resultNotNull = results.Responses[index + 1];
+                    var resultNotNull = allResult[index + 1];
 
                     if (resultNotNull.Fault != null)
                     {
@@ -156,16 +172,16 @@ namespace MscrmTools.AttributeUsageInspector
                     }
 
                     var notNullValueAliased =
-                        ((RetrieveMultipleResponse) resultNotNull.Response).EntityCollection.Entities.First()
+                        ((RetrieveMultipleResponse)resultNotNull.Response).EntityCollection.Entities.First()
                             .GetAttributeValue<AliasedValue>("count");
 
-                    var notNullValue = notNullValueAliased == null ? 0 : (int) notNullValueAliased.Value;
+                    var notNullValue = notNullValueAliased == null ? 0 : (int)notNullValueAliased.Value;
 
                     result.Results.Add(new DetectionResult
                     {
                         Attribute = attribute,
                         NotNull = notNullValue,
-                        Percentage = allCountValue != 0 ? ((double)notNullValue*100)/(double)allCountValue : 0
+                        Percentage = allCountValue != 0 ? ((double)notNullValue * 100) / (double)allCountValue : 0
                     });
                 }
             }
