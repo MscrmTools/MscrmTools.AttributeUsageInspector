@@ -17,6 +17,8 @@ namespace MscrmTools.AttributeUsageInspector
 
         private readonly Settings settings;
 
+        private readonly List<ListViewItem> allItems = new List<ListViewItem>();
+
         public PluginControl()
         {
             InitializeComponent();
@@ -49,9 +51,20 @@ namespace MscrmTools.AttributeUsageInspector
 
         public event EventHandler<StatusBarMessageEventArgs> SendMessageToStatusBar;
 
-        public string RepositoryName { get { return "MscrmTools.AttributeUsageInspector"; } }
-        public string UserName { get { return "MscrmTools"; } }
-        public string HelpUrl { get { return "https://github.com/MscrmTools/MscrmTools.AttributeUsageInspector/wiki"; } }
+        public string RepositoryName
+        {
+            get { return "MscrmTools.AttributeUsageInspector"; }
+        }
+
+        public string UserName
+        {
+            get { return "MscrmTools"; }
+        }
+
+        public string HelpUrl
+        {
+            get { return "https://github.com/MscrmTools/MscrmTools.AttributeUsageInspector/wiki"; }
+        }
 
         #endregion Interfaces members
 
@@ -71,7 +84,8 @@ namespace MscrmTools.AttributeUsageInspector
         {
             if (lvEntities.CheckedItems.Count == 0) return;
 
-            string message = "Exporting to Excel may use standard queries to retrieve all records if records count exceeds 50,000. If so, performance degradation may occur on CRM organization and export may take time. \r\n\r\nAre you sure you want to continue?\r\n\r\nNote: If you previously retrieved data usage, this has been stored in cache and won't be queried again";
+            string message =
+                "Exporting to Excel may use standard queries to retrieve all records if records count exceeds 50,000. If so, performance degradation may occur on CRM organization and export may take time. \r\n\r\nAre you sure you want to continue?\r\n\r\nNote: If you previously retrieved data usage, this has been stored in cache and won't be queried again";
 
             if (MessageBox.Show(this, message, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) ==
                 DialogResult.Yes)
@@ -93,7 +107,8 @@ namespace MscrmTools.AttributeUsageInspector
 
         private void llHowToUpdateAggregateQueryRecordLimit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://nishantrana.me/2012/09/06/aggregatequeryrecordlimit-exceeded-cannot-perform-this-operation/");
+            Process.Start(
+                "https://nishantrana.me/2012/09/06/aggregatequeryrecordlimit-exceeded-cannot-perform-this-operation/");
         }
 
         private void llDiscoWithStandardQueries_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -110,6 +125,20 @@ namespace MscrmTools.AttributeUsageInspector
         private void lvEntities_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvEntities.SelectedItems.Count == 0) return;
+
+            if (settings.FilterAttributes)
+            {
+                var dialog = new FilterAttributesDialog(Service,
+                    ((EntityMetadata)lvEntities.SelectedItems[0].Tag).LogicalName);
+                if (dialog.ShowDialog(this) != DialogResult.OK)
+                {
+                    return;
+                }
+
+                settings.Attributes = dialog.Attributes;
+                settings.ShowOnlyCustom = dialog.ShowCustomOnly;
+                settings.ShowOnlyStandard = dialog.ShowStandardOnly;
+            }
 
             ExecuteMethod(LoadDataUsage, false);
         }
@@ -156,11 +185,21 @@ namespace MscrmTools.AttributeUsageInspector
 
                     foreach (var emd in (EntityMetadataCollection)e.Result)
                     {
-                        var item = new ListViewItem(emd.DisplayName.UserLocalizedLabel != null ? emd.DisplayName.UserLocalizedLabel.Label : "N/A");
+                        var item = new ListViewItem(emd.DisplayName.UserLocalizedLabel != null
+                            ? emd.DisplayName.UserLocalizedLabel.Label
+                            : "N/A");
                         item.SubItems.Add(emd.LogicalName);
                         item.Tag = emd;
 
-                        items.Add(item);
+                        allItems.Add(item);
+
+                        if (txtSearch.Text.Length == 0 || txtSearch.Text.Length > 0
+                            && (emd.LogicalName.IndexOf(txtSearch.Text.ToLower(), StringComparison.Ordinal) >= 0
+                                || emd.DisplayName?.UserLocalizedLabel?.Label.ToLower()
+                                    .IndexOf(txtSearch.Text.ToLower(), StringComparison.Ordinal) >= 0))
+                        {
+                            items.Add(item);
+                        }
                     }
 
                     lvEntities.Items.AddRange(items.ToArray());
@@ -186,7 +225,8 @@ namespace MscrmTools.AttributeUsageInspector
             WorkAsync(new WorkAsyncInfo
             {
                 Message = "Loading data usage...",
-                AsyncArgument = new Tuple<EntityMetadata, bool>((EntityMetadata)lvEntities.SelectedItems[0].Tag, useQueries),
+                AsyncArgument =
+                    new Tuple<EntityMetadata, bool>((EntityMetadata)lvEntities.SelectedItems[0].Tag, useQueries),
                 Work = (w, e) =>
                 {
                     var de = new DetectiveEngine(Service);
@@ -236,7 +276,9 @@ namespace MscrmTools.AttributeUsageInspector
 
                     foreach (var result in results.Results)
                     {
-                        dgvData.Rows.Add(result.Attribute.DisplayName.UserLocalizedLabel?.Label, result.Attribute.LogicalName, result.Attribute.AttributeType.Value, results.AttributeIsContainedInForms(result.Attribute.LogicalName), result.Percentage);
+                        dgvData.Rows.Add(result.Attribute.DisplayName.UserLocalizedLabel?.Label,
+                            result.Attribute.LogicalName, result.Attribute.AttributeType.Value,
+                            results.AttributeIsContainedInForms(result.Attribute.LogicalName), result.Percentage);
                     }
 
                     lblCount.Text = string.Format(lblCount.Tag.ToString(), results.Total);
@@ -316,11 +358,30 @@ namespace MscrmTools.AttributeUsageInspector
 
         private void tsbSettings_Click(object sender, EventArgs e)
         {
-            var dialog = new SettingsDialog(settings.RecordsReturnedPerTrip);
+            var dialog = new SettingsDialog(settings);
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                settings.RecordsReturnedPerTrip = dialog.NumberOfRecordsPerCall;
+                settings.AttributesReturnedPerTrip = dialog.Settings.AttributesReturnedPerTrip;
+                settings.RecordsReturnedPerTrip = dialog.Settings.RecordsReturnedPerTrip;
+                settings.FilterAttributes = dialog.Settings.FilterAttributes;
                 SettingsManager.Instance.Save(typeof(PluginControl), settings);
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            lvEntities.Items.Clear();
+
+            if (txtSearch.Text.Length == 0)
+            {
+                lvEntities.Items.AddRange(allItems.ToArray());
+            }
+            else
+            {
+                lvEntities.Items.AddRange(allItems
+                    .Where(i => ((EntityMetadata)i.Tag).LogicalName.IndexOf(txtSearch.Text.ToLower()) >= 0
+                                || ((EntityMetadata)i.Tag).DisplayName?.UserLocalizedLabel?.Label.IndexOf(txtSearch
+                                    .Text.ToLower()) >= 0).ToArray());
             }
         }
     }

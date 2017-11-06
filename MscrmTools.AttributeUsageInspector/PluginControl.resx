@@ -144,45 +144,32 @@
   <data name="tsbExportToExcel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAESSURBVDhPrVI7bsJAFLSUHqVMCkqOkBqRmoIC1/7bsiUX
-        9PTcgDpNzsAFoE0b0ZMupAkIgR3CjLWLVsZa2xIjjd6+9czsz4aKKIrGvu8vPM/boH6LaT3SNO1A/EqD
-        bdunMAxzUf+FRA+I/ygGzyU2C4DwCHLVDNyTMkClkN8CH3NwDU5ZOccwmoIg6ONoQ44LcRUg5nl3uMAe
-        e5ieZYDKQlwFBtAA45I96ocMSJLkCf2gLiBzHOdHtAa2PG+7g18I3sARuLUs6xH1QBOfV8xrL1GusgK/
-        YJqh8mKb7cB13c/yltEX/4aQ1MM0zQdc1gtWf4eRT3pdVQ1S57WI47iLwAnHZUPjEAlpqKKQtMOdzYZx
-        ASkJ6DU/8+8pAAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAERSURBVDhPrVI7bsJAFLREH6WEIiVHSI2gpkgRt7b8ly25
+        SE/PDVKnyRm4ALS0iB46oAGEAOczg96ilWMtRspIo7dvPTP7s6UjSZLXMAxHQRAsUFcybUae5w8Q92hw
+        HOcUx3Eh9UckZkD8RTH4XWK9AAiPYOG67hlhe1IF6BT5X+BjAc7BASvnGEZTFEUdHK3P8UVcBTnvDhfY
+        Zg9TSwXovIirwAAaYByzR52qgCzLmui7xgCKPc/bSGthy+937QDiLQQf4Au4Rv+IeqCJzyvzxktUq0zA
+        JUxDVF5svR34vj8rb1n9GyK5Ddu2G7isZ6z+CSOf9LqqHqTPG5Gm6RMC3zguG2qHKChDFUVyH/7ZbFm/
+        VcLn6jvwMdUAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="tsbSettings.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
-  </data>
-  <data name="lblWhatNextOnline.Text" xml:space="preserve">
-    <value>As you are working on Online deployment, you have only one choice, performing the data discovery using standard queries. Be careful that this will literraly download all records for an entity, which can affect performance of your computer and CRM organization</value>
-  </data>
-  <data name="lblWathNextOnPremise.Text" xml:space="preserve">
-    <value>As you are working on OnPremise deployment, you have two choices : 
-- Raising the AggregateQueryRecordLimit setting for the deployment
-- Performing the data discovery using standard queries. Be careful that this will literraly download all records for an entity, which can affect performance of your computer and CRM organization</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>For performance reason, Microsoft Dynamics CRM limits the number of records that can be part of an aggregate operation. This plugin uses aggregation operation to count number of records for an entity and number of attributes that don't contain a value. 
-
-This limit is set to 50,000 for Microsoft Dynamics CRM Online. For OnPremise deployments, this setting can be edited for the whole deployment.</value>
   </data>
   <metadata name="clDisplayName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -196,4 +183,29 @@ This limit is set to 50,000 for Microsoft Dynamics CRM Online. For OnPremise dep
   <metadata name="clOnForm.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="clDisplayName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="clLogicalName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="clType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="clOnForm.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="lblWhatNextOnline.Text" xml:space="preserve">
+    <value>As you are working on Online deployment, you have only one choice, performing the data discovery using standard queries. Be careful that this will literraly download all records for an entity, which can affect performance of your computer and CRM organization</value>
+  </data>
+  <data name="lblWathNextOnPremise.Text" xml:space="preserve">
+    <value>As you are working on OnPremise deployment, you have two choices : 
+- Raising the AggregateQueryRecordLimit setting for the deployment
+- Performing the data discovery using standard queries. Be careful that this will literraly download all records for an entity, which can affect performance of your computer and CRM organization</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>For performance reason, Microsoft Dynamics CRM limits the number of records that can be part of an aggregate operation. This plugin uses aggregation operation to count number of records for an entity and number of attributes that don't contain a value. 
+
+This limit is set to 50,000 for Microsoft Dynamics CRM Online. For OnPremise deployments, this setting can be edited for the whole deployment.</value>
+  </data>
 </root>

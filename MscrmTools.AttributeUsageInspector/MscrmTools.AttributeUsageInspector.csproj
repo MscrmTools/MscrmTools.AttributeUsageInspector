@@ -116,6 +116,12 @@
     <Compile Include="DetectionResults.cs" />
     <Compile Include="DetectiveEngine.cs" />
     <Compile Include="ExcelEngine.cs" />
+    <Compile Include="FilterAttributesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterAttributesDialog.Designer.cs">
+      <DependentUpon>FilterAttributesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListViewItemComparer.cs" />
     <Compile Include="MetadataHelper.cs" />
     <Compile Include="Plugin.cs" />
@@ -144,6 +150,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FilterAttributesDialog.resx">
+      <DependentUpon>FilterAttributesDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PluginControl.resx">
       <DependentUpon>PluginControl.cs</DependentUpon>
     </EmbeddedResource>

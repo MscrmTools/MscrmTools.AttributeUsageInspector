@@ -39,10 +39,14 @@ namespace MscrmTools.AttributeUsageInspector
             this.tsbSettings = new System.Windows.Forms.ToolStripButton();
             this.scInspector = new System.Windows.Forms.SplitContainer();
             this.gbEntities = new System.Windows.Forms.GroupBox();
-            this.lvEntities = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbData = new System.Windows.Forms.GroupBox();
+            this.dgvData = new System.Windows.Forms.DataGridView();
+            this.clDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clLogicalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clOnForm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCount = new System.Windows.Forms.Label();
             this.pnlAggregateQueryRecordLimit = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.llDiscoWithStandardQueries = new System.Windows.Forms.LinkLabel();
@@ -53,13 +57,12 @@ namespace MscrmTools.AttributeUsageInspector
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblAggregateQueryRecordLimit = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblCount = new System.Windows.Forms.Label();
-            this.dgvData = new System.Windows.Forms.DataGridView();
-            this.clDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clLogicalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clOnForm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lvEntities = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.tsMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scInspector)).BeginInit();
             this.scInspector.Panel1.SuspendLayout();
@@ -67,10 +70,11 @@ namespace MscrmTools.AttributeUsageInspector
             this.scInspector.SuspendLayout();
             this.gbEntities.SuspendLayout();
             this.gbData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            this.panel1.SuspendLayout();
             this.pnlAggregateQueryRecordLimit.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsMain
@@ -164,6 +168,7 @@ namespace MscrmTools.AttributeUsageInspector
             // gbEntities
             // 
             this.gbEntities.Controls.Add(this.lvEntities);
+            this.gbEntities.Controls.Add(this.panel2);
             this.gbEntities.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbEntities.Location = new System.Drawing.Point(0, 0);
             this.gbEntities.Name = "gbEntities";
@@ -172,40 +177,11 @@ namespace MscrmTools.AttributeUsageInspector
             this.gbEntities.TabStop = false;
             this.gbEntities.Text = "Entities";
             // 
-            // lvEntities
-            // 
-            this.lvEntities.CheckBoxes = true;
-            this.lvEntities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.lvEntities.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvEntities.FullRowSelect = true;
-            this.lvEntities.HideSelection = false;
-            this.lvEntities.Location = new System.Drawing.Point(3, 16);
-            this.lvEntities.Name = "lvEntities";
-            this.lvEntities.Size = new System.Drawing.Size(537, 922);
-            this.lvEntities.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lvEntities.TabIndex = 0;
-            this.lvEntities.UseCompatibleStateImageBehavior = false;
-            this.lvEntities.View = System.Windows.Forms.View.Details;
-            this.lvEntities.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvEntities_ColumnClick);
-            this.lvEntities.SelectedIndexChanged += new System.EventHandler(this.lvEntities_SelectedIndexChanged);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Display Name";
-            this.columnHeader1.Width = 200;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Logical Name";
-            this.columnHeader2.Width = 200;
-            // 
             // gbData
             // 
-            this.gbData.Controls.Add(this.pnlAggregateQueryRecordLimit);
-            this.gbData.Controls.Add(this.panel1);
             this.gbData.Controls.Add(this.dgvData);
+            this.gbData.Controls.Add(this.panel1);
+            this.gbData.Controls.Add(this.pnlAggregateQueryRecordLimit);
             this.gbData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbData.Location = new System.Drawing.Point(0, 0);
             this.gbData.Name = "gbData";
@@ -213,6 +189,70 @@ namespace MscrmTools.AttributeUsageInspector
             this.gbData.TabIndex = 1;
             this.gbData.TabStop = false;
             this.gbData.Text = "Data";
+            // 
+            // dgvData
+            // 
+            this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToDeleteRows = false;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clDisplayName,
+            this.clLogicalName,
+            this.clType,
+            this.clOnForm});
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvData.Location = new System.Drawing.Point(3, 16);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.ReadOnly = true;
+            this.dgvData.RowTemplate.Height = 28;
+            this.dgvData.Size = new System.Drawing.Size(1078, 902);
+            this.dgvData.TabIndex = 3;
+            // 
+            // clDisplayName
+            // 
+            this.clDisplayName.HeaderText = "Display Name";
+            this.clDisplayName.Name = "clDisplayName";
+            this.clDisplayName.ReadOnly = true;
+            this.clDisplayName.Width = 200;
+            // 
+            // clLogicalName
+            // 
+            this.clLogicalName.HeaderText = "Logical Name";
+            this.clLogicalName.Name = "clLogicalName";
+            this.clLogicalName.ReadOnly = true;
+            this.clLogicalName.Width = 200;
+            // 
+            // clType
+            // 
+            this.clType.HeaderText = "Attribute Type";
+            this.clType.Name = "clType";
+            this.clType.ReadOnly = true;
+            this.clType.Width = 150;
+            // 
+            // clOnForm
+            // 
+            this.clOnForm.HeaderText = "On Form(s)";
+            this.clOnForm.Name = "clOnForm";
+            this.clOnForm.ReadOnly = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblCount);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(3, 918);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1078, 20);
+            this.panel1.TabIndex = 1;
+            // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblCount.Location = new System.Drawing.Point(0, 0);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(0, 13);
+            this.lblCount.TabIndex = 0;
+            this.lblCount.Tag = "Statistics based on {0} records";
             // 
             // pnlAggregateQueryRecordLimit
             // 
@@ -227,7 +267,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.pnlAggregateQueryRecordLimit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlAggregateQueryRecordLimit.Location = new System.Drawing.Point(3, 16);
             this.pnlAggregateQueryRecordLimit.Name = "pnlAggregateQueryRecordLimit";
-            this.pnlAggregateQueryRecordLimit.Size = new System.Drawing.Size(1078, 902);
+            this.pnlAggregateQueryRecordLimit.Size = new System.Drawing.Size(1078, 922);
             this.pnlAggregateQueryRecordLimit.TabIndex = 2;
             this.pnlAggregateQueryRecordLimit.Visible = false;
             // 
@@ -326,70 +366,63 @@ namespace MscrmTools.AttributeUsageInspector
             this.lblAggregateQueryRecordLimit.Text = "Aggregate Query Record Limit reached!";
             this.lblAggregateQueryRecordLimit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel1
+            // panel2
             // 
-            this.panel1.Controls.Add(this.lblCount);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 918);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1078, 20);
-            this.panel1.TabIndex = 1;
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.txtSearch);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(3, 16);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(537, 26);
+            this.panel2.TabIndex = 1;
             // 
-            // lblCount
+            // lvEntities
             // 
-            this.lblCount.AutoSize = true;
-            this.lblCount.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblCount.Location = new System.Drawing.Point(0, 0);
-            this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(0, 13);
-            this.lblCount.TabIndex = 0;
-            this.lblCount.Tag = "Statistics based on {0} records";
+            this.lvEntities.CheckBoxes = true;
+            this.lvEntities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.lvEntities.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvEntities.FullRowSelect = true;
+            this.lvEntities.HideSelection = false;
+            this.lvEntities.Location = new System.Drawing.Point(3, 42);
+            this.lvEntities.Name = "lvEntities";
+            this.lvEntities.Size = new System.Drawing.Size(537, 896);
+            this.lvEntities.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvEntities.TabIndex = 2;
+            this.lvEntities.UseCompatibleStateImageBehavior = false;
+            this.lvEntities.View = System.Windows.Forms.View.Details;
+            this.lvEntities.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvEntities_ColumnClick);
+            this.lvEntities.SelectedIndexChanged += new System.EventHandler(this.lvEntities_SelectedIndexChanged);
             // 
-            // dgvData
+            // columnHeader1
             // 
-            this.dgvData.AllowUserToAddRows = false;
-            this.dgvData.AllowUserToDeleteRows = false;
-            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clDisplayName,
-            this.clLogicalName,
-            this.clType,
-            this.clOnForm});
-            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvData.Location = new System.Drawing.Point(3, 16);
-            this.dgvData.Name = "dgvData";
-            this.dgvData.ReadOnly = true;
-            this.dgvData.RowTemplate.Height = 28;
-            this.dgvData.Size = new System.Drawing.Size(1078, 922);
-            this.dgvData.TabIndex = 0;
-            this.dgvData.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_ColumnHeaderMouseClick);
+            this.columnHeader1.Text = "Display Name";
+            this.columnHeader1.Width = 200;
             // 
-            // clDisplayName
+            // columnHeader2
             // 
-            this.clDisplayName.HeaderText = "Display Name";
-            this.clDisplayName.Name = "clDisplayName";
-            this.clDisplayName.ReadOnly = true;
-            this.clDisplayName.Width = 200;
+            this.columnHeader2.Text = "Logical Name";
+            this.columnHeader2.Width = 200;
             // 
-            // clLogicalName
+            // txtSearch
             // 
-            this.clLogicalName.HeaderText = "Logical Name";
-            this.clLogicalName.Name = "clLogicalName";
-            this.clLogicalName.ReadOnly = true;
-            this.clLogicalName.Width = 200;
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Location = new System.Drawing.Point(108, 3);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(429, 20);
+            this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // clType
+            // label4
             // 
-            this.clType.HeaderText = "Attribute Type";
-            this.clType.Name = "clType";
-            this.clType.ReadOnly = true;
-            this.clType.Width = 150;
-            // 
-            // clOnForm
-            // 
-            this.clOnForm.HeaderText = "On Form(s)";
-            this.clOnForm.Name = "clOnForm";
-            this.clOnForm.ReadOnly = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Search";
             // 
             // PluginControl
             // 
@@ -405,23 +438,20 @@ namespace MscrmTools.AttributeUsageInspector
             this.scInspector.ResumeLayout(false);
             this.gbEntities.ResumeLayout(false);
             this.gbData.ResumeLayout(false);
-            this.pnlAggregateQueryRecordLimit.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            this.pnlAggregateQueryRecordLimit.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ToolStrip tsMain;
         private System.Windows.Forms.SplitContainer scInspector;
         private System.Windows.Forms.GroupBox gbEntities;
-        private System.Windows.Forms.ListView lvEntities;
-        private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.ToolStripButton tsbClose;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbLoadEntities;
@@ -440,11 +470,18 @@ namespace MscrmTools.AttributeUsageInspector
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblAggregateQueryRecordLimit;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton tsbSettings;
+        private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.DataGridViewTextBoxColumn clDisplayName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clLogicalName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clType;
         private System.Windows.Forms.DataGridViewTextBoxColumn clOnForm;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton tsbSettings;
+        private System.Windows.Forms.ListView lvEntities;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }

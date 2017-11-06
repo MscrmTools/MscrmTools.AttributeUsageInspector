@@ -62,6 +62,10 @@ namespace MscrmTools.AttributeUsageInspector
                             ).OrderBy(a => a.LogicalName))
                         {
                             if (!record.Contains(attribute.LogicalName)) continue;
+                            if (settings.FilterAttributes && settings.Attributes.Count > 0 &&
+                                !settings.Attributes.Contains(attribute.LogicalName)) continue;
+                            if (settings.FilterAttributes && settings.ShowOnlyCustom && !attribute.IsCustomAttribute.Value) continue;
+                            if (settings.FilterAttributes && settings.ShowOnlyStandard && attribute.IsCustomAttribute.Value) continue;
 
                             if (!attributesCount.ContainsKey(attribute))
                             {
@@ -113,6 +117,11 @@ namespace MscrmTools.AttributeUsageInspector
                     && a.LogicalName.IndexOf("composite") < 0
                     ).OrderBy(a => a.LogicalName))
                 {
+                    if (settings.FilterAttributes && settings.Attributes.Count > 0 &&
+                        !settings.Attributes.Contains(attribute.LogicalName)) continue;
+                    if (settings.FilterAttributes && settings.ShowOnlyCustom && !attribute.IsCustomAttribute.Value) continue;
+                    if (settings.FilterAttributes && settings.ShowOnlyStandard && attribute.IsCustomAttribute.Value) continue;
+
                     attributes.Add(attribute);
 
                     var fetchXmlConditionNotNullPart = $"<condition attribute=\"{attribute.LogicalName}\" operator=\"not-null\"/>";

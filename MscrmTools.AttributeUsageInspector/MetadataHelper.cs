@@ -20,7 +20,7 @@ namespace MscrmTools.AttributeUsageInspector
                 Properties = new MetadataPropertiesExpression("LogicalName", "DisplayName", "Attributes", "PrimaryIdAttribute", "ObjectTypeCode"),
                 AttributeQuery = new AttributeQueryExpression
                 {
-                    Properties = new MetadataPropertiesExpression("DisplayName", "LogicalName", "AttributeType", "IsValidForRead", "AttributeOf"),
+                    Properties = new MetadataPropertiesExpression("DisplayName", "LogicalName", "AttributeType", "IsValidForRead", "AttributeOf", "IsCustomAttribute")
                 }
             };
             var retrieveMetadataChangesRequest = new RetrieveMetadataChangesRequest

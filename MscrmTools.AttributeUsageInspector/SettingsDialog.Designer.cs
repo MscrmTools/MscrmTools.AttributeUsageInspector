@@ -37,6 +37,7 @@
             this.nudNumberOfRecordsPerCall = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.nudNumberOfAttributesPerCall = new System.Windows.Forms.NumericUpDown();
+            this.chkFilterAttributes = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfRecordsPerCall)).BeginInit();
@@ -71,7 +72,7 @@
             this.panel2.Controls.Add(this.btnOK);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 104);
+            this.panel2.Location = new System.Drawing.Point(0, 142);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(417, 39);
@@ -179,11 +180,22 @@
             0,
             0});
             // 
+            // chkFilterAttributes
+            // 
+            this.chkFilterAttributes.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkFilterAttributes.Location = new System.Drawing.Point(7, 100);
+            this.chkFilterAttributes.Name = "chkFilterAttributes";
+            this.chkFilterAttributes.Size = new System.Drawing.Size(168, 24);
+            this.chkFilterAttributes.TabIndex = 6;
+            this.chkFilterAttributes.Text = "Filter attributes";
+            this.chkFilterAttributes.UseVisualStyleBackColor = true;
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 143);
+            this.ClientSize = new System.Drawing.Size(417, 181);
+            this.Controls.Add(this.chkFilterAttributes);
             this.Controls.Add(this.nudNumberOfAttributesPerCall);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nudNumberOfRecordsPerCall);
@@ -215,5 +227,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nudNumberOfAttributesPerCall;
+        private System.Windows.Forms.CheckBox chkFilterAttributes;
     }
 }

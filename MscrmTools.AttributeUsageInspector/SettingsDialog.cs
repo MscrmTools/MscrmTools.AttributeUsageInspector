@@ -5,23 +5,26 @@ namespace MscrmTools.AttributeUsageInspector
 {
     public partial class SettingsDialog : Form
     {
-        public SettingsDialog(int numberOfRecordsPerCall)
+        public SettingsDialog(Settings settings)
         {
             InitializeComponent();
 
-            nudNumberOfRecordsPerCall.Value = numberOfRecordsPerCall >= nudNumberOfRecordsPerCall.Minimum &&
-                                              numberOfRecordsPerCall <= nudNumberOfRecordsPerCall.Maximum
-                ? numberOfRecordsPerCall
+            Settings = settings;
+
+            nudNumberOfRecordsPerCall.Value = settings.RecordsReturnedPerTrip >= nudNumberOfRecordsPerCall.Minimum &&
+                                              settings.RecordsReturnedPerTrip <= nudNumberOfRecordsPerCall.Maximum
+                ? settings.RecordsReturnedPerTrip
                 : nudNumberOfRecordsPerCall.Minimum;
 
-            nudNumberOfAttributesPerCall.Value = NumberOfAttributesPerCall >= nudNumberOfAttributesPerCall.Minimum &&
-                                                 NumberOfAttributesPerCall <= nudNumberOfAttributesPerCall.Maximum
-                ? NumberOfAttributesPerCall
+            nudNumberOfAttributesPerCall.Value = settings.AttributesReturnedPerTrip >= nudNumberOfAttributesPerCall.Minimum &&
+                                                 settings.AttributesReturnedPerTrip <= nudNumberOfAttributesPerCall.Maximum
+                ? settings.AttributesReturnedPerTrip
                 : nudNumberOfAttributesPerCall.Minimum;
+
+            chkFilterAttributes.Checked = settings.FilterAttributes;
         }
 
-        public int NumberOfRecordsPerCall { get; private set; }
-        public int NumberOfAttributesPerCall { get; private set; }
+        public Settings Settings { get; }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -31,8 +34,9 @@ namespace MscrmTools.AttributeUsageInspector
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            NumberOfRecordsPerCall = Convert.ToInt32(nudNumberOfRecordsPerCall.Value);
-            NumberOfAttributesPerCall = Convert.ToInt32(nudNumberOfAttributesPerCall.Value);
+            Settings.RecordsReturnedPerTrip = Convert.ToInt32(nudNumberOfRecordsPerCall.Value);
+            Settings.AttributesReturnedPerTrip = Convert.ToInt32(nudNumberOfAttributesPerCall.Value);
+            Settings.FilterAttributes = chkFilterAttributes.Checked;
 
             DialogResult = DialogResult.OK;
             Close();
