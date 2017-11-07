@@ -43,11 +43,11 @@
             this.chDisplayName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chLogicalName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel4 = new System.Windows.Forms.Panel();
+            this.llInvertSelection = new System.Windows.Forms.LinkLabel();
+            this.llStandard = new System.Windows.Forms.LinkLabel();
+            this.llCustom = new System.Windows.Forms.LinkLabel();
             this.llNone = new System.Windows.Forms.LinkLabel();
             this.llSelectAll = new System.Windows.Forms.LinkLabel();
-            this.llCustom = new System.Windows.Forms.LinkLabel();
-            this.llStandard = new System.Windows.Forms.LinkLabel();
-            this.llInvertSelection = new System.Windows.Forms.LinkLabel();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -220,6 +220,42 @@
             this.panel4.Size = new System.Drawing.Size(448, 18);
             this.panel4.TabIndex = 1;
             // 
+            // llInvertSelection
+            // 
+            this.llInvertSelection.AutoSize = true;
+            this.llInvertSelection.Dock = System.Windows.Forms.DockStyle.Right;
+            this.llInvertSelection.Location = new System.Drawing.Point(100, 0);
+            this.llInvertSelection.Name = "llInvertSelection";
+            this.llInvertSelection.Size = new System.Drawing.Size(79, 13);
+            this.llInvertSelection.TabIndex = 5;
+            this.llInvertSelection.TabStop = true;
+            this.llInvertSelection.Text = "Invert selection";
+            this.llInvertSelection.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llInvertSelection_LinkClicked);
+            // 
+            // llStandard
+            // 
+            this.llStandard.AutoSize = true;
+            this.llStandard.Dock = System.Windows.Forms.DockStyle.Right;
+            this.llStandard.Location = new System.Drawing.Point(179, 0);
+            this.llStandard.Name = "llStandard";
+            this.llStandard.Size = new System.Drawing.Size(81, 13);
+            this.llStandard.TabIndex = 4;
+            this.llStandard.TabStop = true;
+            this.llStandard.Text = "Select standard";
+            this.llStandard.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llStandard_LinkClicked);
+            // 
+            // llCustom
+            // 
+            this.llCustom.AutoSize = true;
+            this.llCustom.Dock = System.Windows.Forms.DockStyle.Right;
+            this.llCustom.Location = new System.Drawing.Point(260, 0);
+            this.llCustom.Name = "llCustom";
+            this.llCustom.Size = new System.Drawing.Size(74, 13);
+            this.llCustom.TabIndex = 3;
+            this.llCustom.TabStop = true;
+            this.llCustom.Text = "Select custom";
+            this.llCustom.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llCustom_LinkClicked);
+            // 
             // llNone
             // 
             this.llNone.AutoSize = true;
@@ -243,41 +279,6 @@
             this.llSelectAll.TabStop = true;
             this.llSelectAll.Text = "Select all";
             this.llSelectAll.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llSelectAll_LinkClicked);
-            // 
-            // llCustom
-            // 
-            this.llCustom.AutoSize = true;
-            this.llCustom.Dock = System.Windows.Forms.DockStyle.Right;
-            this.llCustom.Location = new System.Drawing.Point(260, 0);
-            this.llCustom.Name = "llCustom";
-            this.llCustom.Size = new System.Drawing.Size(74, 13);
-            this.llCustom.TabIndex = 3;
-            this.llCustom.TabStop = true;
-            this.llCustom.Text = "Select custom";
-            this.llCustom.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llCustom_LinkClicked);
-            // 
-            // llStandard
-            // 
-            this.llStandard.AutoSize = true;
-            this.llStandard.Dock = System.Windows.Forms.DockStyle.Right;
-            this.llStandard.Location = new System.Drawing.Point(179, 0);
-            this.llStandard.Name = "llStandard";
-            this.llStandard.Size = new System.Drawing.Size(81, 13);
-            this.llStandard.TabIndex = 4;
-            this.llStandard.TabStop = true;
-            this.llStandard.Text = "Select standard";
-            this.llStandard.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llStandard_LinkClicked);
-            // 
-            // llInvertSelection
-            // 
-            this.llInvertSelection.AutoSize = true;
-            this.llInvertSelection.Dock = System.Windows.Forms.DockStyle.Right;
-            this.llInvertSelection.Location = new System.Drawing.Point(100, 0);
-            this.llInvertSelection.Name = "llInvertSelection";
-            this.llInvertSelection.Size = new System.Drawing.Size(79, 13);
-            this.llInvertSelection.TabIndex = 5;
-            this.llInvertSelection.TabStop = true;
-            this.llInvertSelection.Text = "Invert selection";
             // 
             // FilterAttributesDialog
             // 

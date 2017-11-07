@@ -32,6 +32,43 @@ namespace MscrmTools.AttributeUsageInspector
             return ((RetrieveMetadataChangesResponse)service.Execute(retrieveMetadataChangesRequest)).EntityMetadata;
         }
 
+        public static EntityMetadataCollection LoadAttributes(IOrganizationService service, string entityLogicalName)
+        {
+            EntityQueryExpression entityQueryExpression = new EntityQueryExpression
+            {
+                Criteria = new MetadataFilterExpression
+                {
+                    Conditions =
+                    {
+                        new MetadataConditionExpression("LogicalName", MetadataConditionOperator.Equals, entityLogicalName)
+                    }
+                },
+                Properties = new MetadataPropertiesExpression
+                {
+                    AllProperties = false,
+                    PropertyNames = { "Attributes" }
+                },
+                AttributeQuery = new AttributeQueryExpression
+                {
+                    Properties = new MetadataPropertiesExpression
+                    {
+                        AllProperties = false,
+                        PropertyNames = { "DisplayName", "LogicalName", "IsCustomAttribute" }
+                    }
+                },
+            };
+
+            RetrieveMetadataChangesRequest retrieveMetadataChangesRequest = new RetrieveMetadataChangesRequest
+            {
+                Query = entityQueryExpression,
+                ClientVersionStamp = null
+            };
+
+            var response = (RetrieveMetadataChangesResponse)service.Execute(retrieveMetadataChangesRequest);
+
+            return response.EntityMetadata;
+        }
+
         public static IEnumerable<string> GetFormsDefinitions(int objectTypeCode, IOrganizationService service)
         {
             var qe = new QueryExpression("systemform")

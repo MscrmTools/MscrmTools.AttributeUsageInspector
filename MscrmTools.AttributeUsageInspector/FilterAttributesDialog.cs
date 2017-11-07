@@ -55,39 +55,9 @@ namespace MscrmTools.AttributeUsageInspector
 
         private void LoadAttributes()
         {
-            EntityQueryExpression entityQueryExpression = new EntityQueryExpression
-            {
-                Criteria = new MetadataFilterExpression
-                {
-                    Conditions =
-                    {
-                        new MetadataConditionExpression("LogicalName", MetadataConditionOperator.Equals, entityLogicalName)
-                    }
-                },
-                Properties = new MetadataPropertiesExpression
-                {
-                    AllProperties = false,
-                    PropertyNames = { "Attributes" }
-                },
-                AttributeQuery = new AttributeQueryExpression
-                {
-                    Properties = new MetadataPropertiesExpression
-                    {
-                        AllProperties = false,
-                        PropertyNames = { "DisplayName", "LogicalName" }
-                    }
-                },
-            };
+            var emds = MetadataHelper.LoadAttributes(service, entityLogicalName);
 
-            RetrieveMetadataChangesRequest retrieveMetadataChangesRequest = new RetrieveMetadataChangesRequest
-            {
-                Query = entityQueryExpression,
-                ClientVersionStamp = null
-            };
-
-            var response = (RetrieveMetadataChangesResponse)service.Execute(retrieveMetadataChangesRequest);
-
-            lvAttributes.Items.AddRange(response.EntityMetadata.First().Attributes.Select(a => new ListViewItem(a.DisplayName?.UserLocalizedLabel?.Label ?? "N/A") { Tag = a, SubItems = { a.LogicalName } }).ToArray());
+            lvAttributes.Items.AddRange(emds.First().Attributes.Select(a => new ListViewItem(a.DisplayName?.UserLocalizedLabel?.Label ?? "N/A") { Tag = a, SubItems = { a.LogicalName } }).ToArray());
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -128,10 +98,7 @@ namespace MscrmTools.AttributeUsageInspector
         {
             foreach (ListViewItem item in lvAttributes.Items)
             {
-                if (!((AttributeMetadata)item.Tag).IsCustomAttribute.Value)
-                {
-                    item.Checked = true;
-                }
+                item.Checked = !((AttributeMetadata)item.Tag).IsCustomAttribute ?? false;
             }
         }
 
@@ -139,10 +106,7 @@ namespace MscrmTools.AttributeUsageInspector
         {
             foreach (ListViewItem item in lvAttributes.Items)
             {
-                if (((AttributeMetadata)item.Tag).IsCustomAttribute.Value)
-                {
-                    item.Checked = true;
-                }
+                item.Checked = ((AttributeMetadata)item.Tag).IsCustomAttribute ?? false;
             }
         }
 
@@ -156,9 +120,9 @@ namespace MscrmTools.AttributeUsageInspector
             }
             else
             {
-                {
-                    lv.ListViewItemSorter = new ListViewItemComparer(e.Column, SortOrder.Ascending);
-                }
+                columnSortedIndex = e.Column;
+
+                lv.ListViewItemSorter = new ListViewItemComparer(e.Column, SortOrder.Ascending);
             }
         }
     }
