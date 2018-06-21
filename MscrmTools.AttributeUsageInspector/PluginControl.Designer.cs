@@ -37,6 +37,8 @@ namespace MscrmTools.AttributeUsageInspector
             this.tsbExportToExcel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbSettings = new System.Windows.Forms.ToolStripButton();
+            this.tssCancel = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCancel = new System.Windows.Forms.ToolStripButton();
             this.scInspector = new System.Windows.Forms.SplitContainer();
             this.gbEntities = new System.Windows.Forms.GroupBox();
             this.lvEntities = new System.Windows.Forms.ListView();
@@ -50,11 +52,6 @@ namespace MscrmTools.AttributeUsageInspector
             this.pnlFilterInfo = new System.Windows.Forms.Panel();
             this.lblFilterInfo = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dgvData = new System.Windows.Forms.DataGridView();
-            this.clDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clLogicalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clOnForm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlAggregateQueryRecordLimit = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.llDiscoWithStandardQueries = new System.Windows.Forms.LinkLabel();
@@ -67,8 +64,11 @@ namespace MscrmTools.AttributeUsageInspector
             this.lblAggregateQueryRecordLimit = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCount = new System.Windows.Forms.Label();
-            this.tssCancel = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbCancel = new System.Windows.Forms.ToolStripButton();
+            this.dgvData = new System.Windows.Forms.DataGridView();
+            this.clDisplayName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clLogicalName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clOnForm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tsMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scInspector)).BeginInit();
             this.scInspector.Panel1.SuspendLayout();
@@ -79,10 +79,10 @@ namespace MscrmTools.AttributeUsageInspector
             this.gbData.SuspendLayout();
             this.pnlData.SuspendLayout();
             this.pnlFilterInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.pnlAggregateQueryRecordLimit.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
             // 
             // tsMain
@@ -157,6 +157,24 @@ namespace MscrmTools.AttributeUsageInspector
             this.tsbSettings.Text = "Settings";
             this.tsbSettings.ToolTipText = "Define number of records returned per call";
             this.tsbSettings.Click += new System.EventHandler(this.tsbSettings_Click);
+            // 
+            // tssCancel
+            // 
+            this.tssCancel.Name = "tssCancel";
+            this.tssCancel.Size = new System.Drawing.Size(6, 37);
+            this.tssCancel.Visible = false;
+            // 
+            // tsbCancel
+            // 
+            this.tsbCancel.Image = global::MscrmTools.AttributeUsageInspector.Properties.Resources.cancel;
+            this.tsbCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCancel.Name = "tsbCancel";
+            this.tsbCancel.Size = new System.Drawing.Size(107, 34);
+            this.tsbCancel.Text = "Cancel";
+            this.tsbCancel.ToolTipText = "Clicking on this button will stop data loading and perform analysis on records re" +
+    "trieved so far";
+            this.tsbCancel.Visible = false;
+            this.tsbCancel.Click += new System.EventHandler(this.tsbCancel_Click);
             // 
             // scInspector
             // 
@@ -260,8 +278,8 @@ namespace MscrmTools.AttributeUsageInspector
             // 
             // pnlData
             // 
-            this.pnlData.Controls.Add(this.pnlFilterInfo);
             this.pnlData.Controls.Add(this.dgvData);
+            this.pnlData.Controls.Add(this.pnlFilterInfo);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(3, 25);
             this.pnlData.Name = "pnlData";
@@ -276,7 +294,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.pnlFilterInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlFilterInfo.Location = new System.Drawing.Point(0, 0);
             this.pnlFilterInfo.Name = "pnlFilterInfo";
-            this.pnlFilterInfo.Size = new System.Drawing.Size(1078, 20);
+            this.pnlFilterInfo.Size = new System.Drawing.Size(1078, 43);
             this.pnlFilterInfo.TabIndex = 6;
             // 
             // lblFilterInfo
@@ -298,52 +316,6 @@ namespace MscrmTools.AttributeUsageInspector
             this.label5.Size = new System.Drawing.Size(0, 25);
             this.label5.TabIndex = 0;
             this.label5.Tag = "Statistics based on {0} records";
-            // 
-            // dgvData
-            // 
-            this.dgvData.AllowUserToAddRows = false;
-            this.dgvData.AllowUserToDeleteRows = false;
-            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clDisplayName,
-            this.clLogicalName,
-            this.clType,
-            this.clOnForm});
-            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvData.Location = new System.Drawing.Point(0, 0);
-            this.dgvData.Name = "dgvData";
-            this.dgvData.ReadOnly = true;
-            this.dgvData.RowTemplate.Height = 28;
-            this.dgvData.Size = new System.Drawing.Size(1078, 881);
-            this.dgvData.TabIndex = 6;
-            this.dgvData.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_ColumnHeaderMouseClick);
-            // 
-            // clDisplayName
-            // 
-            this.clDisplayName.HeaderText = "Display Name";
-            this.clDisplayName.Name = "clDisplayName";
-            this.clDisplayName.ReadOnly = true;
-            this.clDisplayName.Width = 200;
-            // 
-            // clLogicalName
-            // 
-            this.clLogicalName.HeaderText = "Logical Name";
-            this.clLogicalName.Name = "clLogicalName";
-            this.clLogicalName.ReadOnly = true;
-            this.clLogicalName.Width = 200;
-            // 
-            // clType
-            // 
-            this.clType.HeaderText = "Attribute Type";
-            this.clType.Name = "clType";
-            this.clType.ReadOnly = true;
-            this.clType.Width = 150;
-            // 
-            // clOnForm
-            // 
-            this.clOnForm.HeaderText = "On Form(s)";
-            this.clOnForm.Name = "clOnForm";
-            this.clOnForm.ReadOnly = true;
             // 
             // pnlAggregateQueryRecordLimit
             // 
@@ -476,23 +448,51 @@ namespace MscrmTools.AttributeUsageInspector
             this.lblCount.TabIndex = 0;
             this.lblCount.Tag = "Statistics based on {0} records";
             // 
-            // tssCancel
+            // dgvData
             // 
-            this.tssCancel.Name = "tssCancel";
-            this.tssCancel.Size = new System.Drawing.Size(6, 37);
-            this.tssCancel.Visible = false;
+            this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToDeleteRows = false;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clDisplayName,
+            this.clLogicalName,
+            this.clType,
+            this.clOnForm});
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvData.Location = new System.Drawing.Point(0, 43);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.ReadOnly = true;
+            this.dgvData.RowTemplate.Height = 28;
+            this.dgvData.Size = new System.Drawing.Size(1078, 838);
+            this.dgvData.TabIndex = 7;
+            this.dgvData.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_ColumnHeaderMouseClick);
             // 
-            // tsbCancel
+            // clDisplayName
             // 
-            this.tsbCancel.Image = global::MscrmTools.AttributeUsageInspector.Properties.Resources.cancel;
-            this.tsbCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbCancel.Name = "tsbCancel";
-            this.tsbCancel.Size = new System.Drawing.Size(95, 34);
-            this.tsbCancel.Text = "Cancel";
-            this.tsbCancel.ToolTipText = "Clicking on this button will stop data loading and perform analysis on records re" +
-    "trieved so far";
-            this.tsbCancel.Visible = false;
-            this.tsbCancel.Click += new System.EventHandler(this.tsbCancel_Click);
+            this.clDisplayName.HeaderText = "Display Name";
+            this.clDisplayName.Name = "clDisplayName";
+            this.clDisplayName.ReadOnly = true;
+            this.clDisplayName.Width = 200;
+            // 
+            // clLogicalName
+            // 
+            this.clLogicalName.HeaderText = "Logical Name";
+            this.clLogicalName.Name = "clLogicalName";
+            this.clLogicalName.ReadOnly = true;
+            this.clLogicalName.Width = 200;
+            // 
+            // clType
+            // 
+            this.clType.HeaderText = "Attribute Type";
+            this.clType.Name = "clType";
+            this.clType.ReadOnly = true;
+            this.clType.Width = 150;
+            // 
+            // clOnForm
+            // 
+            this.clOnForm.HeaderText = "On Form(s)";
+            this.clOnForm.Name = "clOnForm";
+            this.clOnForm.ReadOnly = true;
             // 
             // PluginControl
             // 
@@ -513,11 +513,11 @@ namespace MscrmTools.AttributeUsageInspector
             this.pnlData.ResumeLayout(false);
             this.pnlFilterInfo.ResumeLayout(false);
             this.pnlFilterInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.pnlAggregateQueryRecordLimit.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -551,16 +551,16 @@ namespace MscrmTools.AttributeUsageInspector
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.DataGridView dgvData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clDisplayName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clLogicalName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clOnForm;
         private System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.Panel pnlFilterInfo;
         private System.Windows.Forms.Label lblFilterInfo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripSeparator tssCancel;
         private System.Windows.Forms.ToolStripButton tsbCancel;
+        private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clDisplayName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clLogicalName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clOnForm;
     }
 }

@@ -174,7 +174,7 @@ namespace MscrmTools.AttributeUsageInspector
                     foreach (var emd in emds)
                     {
                         w.ReportProgress(0, "Exporting entity " + emd.LogicalName);
-                        var de = new DetectiveEngine(Service);
+                        de = new DetectiveEngine(Service);
 
                         var result = globalResults.FirstOrDefault(r => r.Entity == emd.LogicalName);
                         if (result == null)
