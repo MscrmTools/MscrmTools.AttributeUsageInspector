@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 
 namespace MscrmTools.AttributeUsageInspector
 {
     internal class DetectiveEngine
     {
-        private readonly IOrganizationService service;
-
         private const string FetchXml = "<fetch mapping=\"logical\" aggregate=\"true\" count=\"{3}\"><entity name=\"{0}\">{1}<filter>{2}</filter></entity></fetch>";
+        private readonly IOrganizationService service;
 
         public DetectiveEngine(IOrganizationService service)
         {
             this.service = service;
         }
+
+        public bool Cancel { get; set; }
 
         public DetectionResults GetUsage(EntityMetadata emd, bool useStdQueries, Settings settings, BackgroundWorker worker = null)
         {
@@ -35,7 +35,7 @@ namespace MscrmTools.AttributeUsageInspector
                         Count = settings.RecordsReturnedPerTrip,
                         PageNumber = 1
                     },
-                    ColumnSet = new ColumnSet(true),
+                    ColumnSet = new ColumnSet(settings.Attributes.ToArray()),
                     NoLock = true
                 };
 
@@ -74,7 +74,7 @@ namespace MscrmTools.AttributeUsageInspector
                             attributesCount[attribute] = attributesCount[attribute] + 1;
                         }
                     }
-                } while (ec.MoreRecords);
+                } while (ec.MoreRecords && Cancel == false);
 
                 result.Total = total;
                 result.Entity = emd.LogicalName;
@@ -85,7 +85,7 @@ namespace MscrmTools.AttributeUsageInspector
                     {
                         Attribute = key,
                         NotNull = attributesCount[key],
-                        Percentage = result.Total != 0 ? (double)(attributesCount[key] * 100) / (double)result.Total : 0
+                        Percentage = result.Total != 0 ? attributesCount[key] * 100 / (double)result.Total : 0
                     });
                 }
             }
@@ -184,13 +184,13 @@ namespace MscrmTools.AttributeUsageInspector
                         ((RetrieveMultipleResponse)resultNotNull.Response).EntityCollection.Entities.First()
                             .GetAttributeValue<AliasedValue>("count");
 
-                    var notNullValue = notNullValueAliased == null ? 0 : (int)notNullValueAliased.Value;
+                    var notNullValue = (int?)notNullValueAliased?.Value ?? 0;
 
                     result.Results.Add(new DetectionResult
                     {
                         Attribute = attribute,
                         NotNull = notNullValue,
-                        Percentage = allCountValue != 0 ? ((double)notNullValue * 100) / (double)allCountValue : 0
+                        Percentage = allCountValue != 0 ? (double)notNullValue * 100 / allCountValue : 0
                     });
                 }
             }

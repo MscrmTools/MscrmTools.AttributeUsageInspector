@@ -17,6 +17,7 @@ namespace MscrmTools.AttributeUsageInspector
         private readonly List<DetectionResults> globalResults;
 
         private readonly Settings settings;
+        private DetectiveEngine de;
 
         public PluginControl()
         {
@@ -229,7 +230,11 @@ namespace MscrmTools.AttributeUsageInspector
             lvEntities.Enabled = false;
             tsbLoadEntities.Enabled = false;
             tsbExportToExcel.Enabled = false;
+            pnlData.Visible = true;
             pnlAggregateQueryRecordLimit.Visible = false;
+
+            tssCancel.Visible = useQueries;
+            tsbCancel.Visible = useQueries;
 
             WorkAsync(new WorkAsyncInfo
             {
@@ -238,7 +243,7 @@ namespace MscrmTools.AttributeUsageInspector
                     new Tuple<EntityMetadata, bool>((EntityMetadata)lvEntities.SelectedItems[0].Tag, useQueries),
                 Work = (w, e) =>
                 {
-                    var de = new DetectiveEngine(Service);
+                    de = new DetectiveEngine(Service);
                     var emd = ((Tuple<EntityMetadata, bool>)e.Argument).Item1;
                     var useStdQueries = ((Tuple<EntityMetadata, bool>)e.Argument).Item2;
                     DetectionResults result = de.GetUsage(emd, useStdQueries, settings, w);
@@ -278,6 +283,7 @@ namespace MscrmTools.AttributeUsageInspector
                     {
                         if (results.IsAggregateQueryRecordLimitReached)
                         {
+                            pnlData.Visible = false;
                             pnlAggregateQueryRecordLimit.Visible = true;
                             lblWathNextOnPremise.Visible = !ConnectionDetail.UseOnline;
                             lblWhatNextOnline.Visible = ConnectionDetail.UseOnline;
@@ -303,6 +309,7 @@ namespace MscrmTools.AttributeUsageInspector
                 ProgressChanged = e =>
                 {
                     SendMessageToStatusBar?.Invoke(this, new StatusBarMessageEventArgs(e.UserState.ToString()));
+                    SetWorkingMessage($"Loading data usage...\n{e.UserState.ToString()}");
                 }
             });
         }
@@ -362,6 +369,13 @@ namespace MscrmTools.AttributeUsageInspector
         }
 
         #endregion Business methods
+
+        private void tsbCancel_Click(object sender, EventArgs e)
+        {
+            de.Cancel = true;
+            tssCancel.Visible = false;
+            tsbCancel.Visible = false;
+        }
 
         private void tsbSettings_Click(object sender, EventArgs e)
         {
