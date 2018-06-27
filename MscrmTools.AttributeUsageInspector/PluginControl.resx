@@ -144,33 +144,45 @@
   <data name="tsbExportToExcel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAGdYAABnWARjRyu0AAAESSURBVDhPrVI7bsJAFLREH6WEIiVHSI2gpkgRN24s/2VL
-        LtLTc4PUaXIGLgAtLaKHDmgAIcD5zKC3aOVYi5Ey0ujtW8/M/mzpSJLkNQzDURAEC9SVTJuR5/kDxD0a
-        HMc5xXFcSP0RiRkQf1EMfpdYLwDCI1i4rntG2J5UATpF/hf4WIBzcMDKOYbRFEVRB0frc3wRV0HOu8MF
-        ttnD1FIBOi/iKjCABhjH7FGnKiDLsib6rjGAYs/zNtJa2PL7XTuAeAvBB/gCrtE/oh5o4vPKvPES1SoT
-        cAnTEJUXW28Hvu/PyltW/4ZIbsO27QYu6xmrf8LIJ72uqgfp80akafqEwDeOy4baIQrKUEWR3Id/NlvW
-        LzKn54ox/FacAAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAAGdYAABnWARjRyu0AAAEVSURBVDhPY0AG6enpISkpKduTk5OfAOk3UGH8IDc3lw+o
+        2AmkITw8/FdaWtofKP0fqgQ/ACr+C1IMxP/QMHEGABX+BOI/8fHxvyMjI7+CMMwAZAxVjgmAkn+A+CYQ
+        14BokBjIMJCm1NRUe6DXfEBssGJsAOrfL8AAVAXxgZokYQYgY7BibABkAEgDUOMREB9In4MZkJWVJQHk
+        O+I1AKQ4MTHxHZTLAHTyNJJcAFT8GahgARAHAPFbIF8ASH8HaQJFL1QcbyDCbDkKxE+BmtqBNChgiXNB
+        UlLSdXQnw9IGVAlhEBoaygwMLFOg7UuBGkFRCrcV2SBkcbwgMzNTFmhgIYiNroFoQ2AApgEbhiohDVBZ
+        MwMDAH8r506s10VWAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="tsbSettings.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
+  <metadata name="clDisplayName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="clLogicalName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="clType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="clOnForm.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="lblWhatNextOnline.Text" xml:space="preserve">
     <value>As you are working on Online deployment, you have only one choice, performing the data discovery using standard queries. Be careful that this will literraly download all records for an entity, which can affect performance of your computer and CRM organization</value>
   </data>
@@ -184,28 +196,4 @@
 
 This limit is set to 50,000 for Microsoft Dynamics CRM Online. For OnPremise deployments, this setting can be edited for the whole deployment.</value>
   </data>
-  <metadata name="clDisplayName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clLogicalName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clOnForm.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clDisplayName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clLogicalName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="clOnForm.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

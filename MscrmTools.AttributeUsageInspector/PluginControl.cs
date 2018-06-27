@@ -391,6 +391,7 @@ namespace MscrmTools.AttributeUsageInspector
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
+            lvEntities.SelectedIndexChanged -= lvEntities_SelectedIndexChanged;
             lvEntities.Items.Clear();
 
             if (txtSearch.Text.Length == 0)
@@ -404,6 +405,7 @@ namespace MscrmTools.AttributeUsageInspector
                                 || ((EntityMetadata)i.Tag).DisplayName?.UserLocalizedLabel?.Label.IndexOf(txtSearch
                                     .Text.ToLower()) >= 0).ToArray());
             }
+            lvEntities.SelectedIndexChanged += lvEntities_SelectedIndexChanged;
         }
     }
 }
