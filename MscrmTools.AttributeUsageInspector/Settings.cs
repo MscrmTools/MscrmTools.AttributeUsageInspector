@@ -17,12 +17,6 @@ namespace MscrmTools.AttributeUsageInspector
         public bool FilterAttributes { get; set; }
 
         [XmlIgnore]
-        public List<string> Attributes { get; set; }
-
-        [XmlIgnore]
-        public bool ShowOnlyCustom { get; set; }
-
-        [XmlIgnore]
-        public bool ShowOnlyStandard { get; set; }
+        public IDictionary<string, EntityFilterSetting> Filters { get; } = new Dictionary<string, EntityFilterSetting>();
     }
 }

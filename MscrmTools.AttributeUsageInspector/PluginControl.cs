@@ -123,10 +123,11 @@ namespace MscrmTools.AttributeUsageInspector
                 {
                     return;
                 }
-
-                settings.Attributes = dialog.Attributes;
-                settings.ShowOnlyCustom = dialog.ShowCustomOnly;
-                settings.ShowOnlyStandard = dialog.ShowStandardOnly;
+                EntityFilterSetting fs = new EntityFilterSetting();
+                fs.Attributes = dialog.Attributes;
+                fs.ShowOnlyCustom = dialog.ShowCustomOnly;
+                fs.ShowOnlyStandard = dialog.ShowStandardOnly;
+                settings.Filters[dialog.entityLogicalName] = fs;
             }
 
             ExecuteMethod(LoadDataUsage, false);

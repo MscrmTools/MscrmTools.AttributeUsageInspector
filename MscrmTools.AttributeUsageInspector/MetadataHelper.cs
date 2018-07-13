@@ -13,14 +13,17 @@ namespace MscrmTools.AttributeUsageInspector
     /// </summary>
     internal class MetadataHelper
     {
+        private static readonly string[] EntityMetadataProperties = { "LogicalName", "DisplayName", "Attributes", "PrimaryIdAttribute", "ObjectTypeCode" };
+        private static readonly string[] AttributeMetadataProperties = { "DisplayName", "LogicalName", "AttributeType", "IsValidForRead", "AttributeOf", "IsCustomAttribute" };
+
         public static EntityMetadataCollection LoadEntities(IOrganizationService service)
         {
             var entityQueryExpression = new EntityQueryExpression()
             {
-                Properties = new MetadataPropertiesExpression("LogicalName", "DisplayName", "Attributes", "PrimaryIdAttribute", "ObjectTypeCode"),
+                Properties = new MetadataPropertiesExpression(EntityMetadataProperties),
                 AttributeQuery = new AttributeQueryExpression
                 {
-                    Properties = new MetadataPropertiesExpression("DisplayName", "LogicalName", "AttributeType", "IsValidForRead", "AttributeOf", "IsCustomAttribute")
+                    Properties = new MetadataPropertiesExpression(AttributeMetadataProperties)
                 }
             };
             var retrieveMetadataChangesRequest = new RetrieveMetadataChangesRequest
@@ -50,10 +53,9 @@ namespace MscrmTools.AttributeUsageInspector
                 },
                 AttributeQuery = new AttributeQueryExpression
                 {
-                    Properties = new MetadataPropertiesExpression
+                    Properties = new MetadataPropertiesExpression(AttributeMetadataProperties)
                     {
-                        AllProperties = false,
-                        PropertyNames = { "DisplayName", "LogicalName", "IsCustomAttribute" }
+                        AllProperties = false
                     }
                 },
             };
@@ -85,6 +87,17 @@ namespace MscrmTools.AttributeUsageInspector
             };
 
             return service.RetrieveMultiple(qe).Entities.Select(e => e.GetAttributeValue<string>("formxml"));
+        }
+
+        public static IEnumerable<AttributeMetadata> FilterAttributes(AttributeMetadata[] attributes)
+        {
+            return attributes.Where(a =>
+                            a.AttributeOf == null
+                            && a.AttributeType.Value != AttributeTypeCode.Virtual
+                            && a.AttributeType.Value != AttributeTypeCode.PartyList
+                            && a.IsValidForRead.Value
+                            && a.LogicalName.IndexOf("composite") < 0
+                            ).OrderBy(a => a.LogicalName);
         }
     }
 }

@@ -28,6 +28,15 @@ namespace MscrmTools.AttributeUsageInspector
 
             if (useStdQueries)
             {
+                ColumnSet columnSet = null;
+                if (settings.Filters.ContainsKey(emd.LogicalName) &&
+                    settings.Filters[emd.LogicalName].Attributes.Count > 0)
+                {
+                    columnSet = new ColumnSet(settings.Filters[emd.LogicalName].Attributes.ToArray());
+                } else
+                {
+                    columnSet = new ColumnSet(MetadataHelper.FilterAttributes(emd.Attributes).Select(a => a.LogicalName).ToArray());
+                }
                 var query = new QueryExpression(emd.LogicalName)
                 {
                     PageInfo = new PagingInfo
@@ -35,7 +44,7 @@ namespace MscrmTools.AttributeUsageInspector
                         Count = settings.RecordsReturnedPerTrip,
                         PageNumber = 1
                     },
-                    ColumnSet = new ColumnSet(settings.Attributes.ToArray()),
+                    ColumnSet = columnSet,
                     NoLock = true
                 };
 
@@ -53,20 +62,18 @@ namespace MscrmTools.AttributeUsageInspector
 
                     foreach (var record in ec.Entities)
                     {
-                        foreach (var attribute in emd.Attributes.Where(a =>
-                            a.AttributeOf == null
-                            && a.AttributeType.Value != AttributeTypeCode.Virtual
-                            && a.AttributeType.Value != AttributeTypeCode.PartyList
-                            && a.IsValidForRead.Value
-                            && a.LogicalName.IndexOf("composite") < 0
-                            ).OrderBy(a => a.LogicalName))
+                        foreach (var attribute in MetadataHelper.FilterAttributes(emd.Attributes).OrderBy(a => a.LogicalName))
                         {
                             if (!record.Contains(attribute.LogicalName)) continue;
-                            if (settings.FilterAttributes && settings.Attributes.Count > 0 &&
-                                !settings.Attributes.Contains(attribute.LogicalName)) continue;
-                            if (settings.FilterAttributes && settings.ShowOnlyCustom && !attribute.IsCustomAttribute.Value) continue;
-                            if (settings.FilterAttributes && settings.ShowOnlyStandard && attribute.IsCustomAttribute.Value) continue;
-
+                            if (settings.FilterAttributes &&
+                                settings.Filters.ContainsKey(record.LogicalName))
+                            {
+                                EntityFilterSetting fs = settings.Filters[record.LogicalName];
+                                if (fs.Attributes.Count > 0 &&
+                                    !fs.Attributes.Contains(attribute.LogicalName)) continue;
+                                if (fs.ShowOnlyCustom && !attribute.IsCustomAttribute.Value) continue;
+                                if (fs.ShowOnlyStandard && attribute.IsCustomAttribute.Value) continue;
+                            }
                             if (!attributesCount.ContainsKey(attribute))
                             {
                                 attributesCount.Add(attribute, 0);
@@ -109,18 +116,18 @@ namespace MscrmTools.AttributeUsageInspector
 
                 var allResult = new ExecuteMultipleResponseItemCollection();
 
-                foreach (var attribute in emd.Attributes.Where(a =>
-                    a.AttributeOf == null
-                    && a.AttributeType.Value != AttributeTypeCode.Virtual
-                    && a.AttributeType.Value != AttributeTypeCode.PartyList
-                    && a.IsValidForRead.Value
-                    && a.LogicalName.IndexOf("composite") < 0
-                    ).OrderBy(a => a.LogicalName))
+                foreach (var attribute in MetadataHelper.FilterAttributes(emd.Attributes).OrderBy(a => a.LogicalName))
                 {
-                    if (settings.FilterAttributes && settings.Attributes.Count > 0 &&
-                        !settings.Attributes.Contains(attribute.LogicalName)) continue;
-                    if (settings.FilterAttributes && settings.ShowOnlyCustom && !attribute.IsCustomAttribute.Value) continue;
-                    if (settings.FilterAttributes && settings.ShowOnlyStandard && attribute.IsCustomAttribute.Value) continue;
+
+                    if (settings.FilterAttributes &&
+                        settings.Filters.ContainsKey(emd.LogicalName))
+                    {
+                        EntityFilterSetting fs = settings.Filters[emd.LogicalName];
+                        if (fs.Attributes.Count > 0 &&
+                            !fs.Attributes.Contains(attribute.LogicalName)) continue;
+                        if (fs.ShowOnlyCustom && !attribute.IsCustomAttribute.Value) continue;
+                        if (fs.ShowOnlyStandard && attribute.IsCustomAttribute.Value) continue;
+                    }
 
                     attributes.Add(attribute);
 
