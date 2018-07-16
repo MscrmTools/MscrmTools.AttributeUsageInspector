@@ -386,6 +386,9 @@ namespace MscrmTools.AttributeUsageInspector
                 settings.AttributesReturnedPerTrip = dialog.Settings.AttributesReturnedPerTrip;
                 settings.RecordsReturnedPerTrip = dialog.Settings.RecordsReturnedPerTrip;
                 settings.FilterAttributes = dialog.Settings.FilterAttributes;
+                settings.UseSQLQuery = dialog.Settings.UseSQLQuery;
+                settings.SQLCommandTimeout = dialog.Settings.SQLCommandTimeout;
+                settings.SQLConnectionString = dialog.Settings.SQLConnectionString;
                 SettingsManager.Instance.Save(typeof(PluginControl), settings);
             }
         }

@@ -38,10 +38,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.nudNumberOfAttributesPerCall = new System.Windows.Forms.NumericUpDown();
             this.chkFilterAttributes = new System.Windows.Forms.CheckBox();
+            this.chkUseSQL = new System.Windows.Forms.CheckBox();
+            this.tbSQLConnectionString = new System.Windows.Forms.TextBox();
+            this.btnTestConnection = new System.Windows.Forms.Button();
+            this.nudCommandTimeOut = new System.Windows.Forms.NumericUpDown();
+            this.lblCommandTimeout = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfRecordsPerCall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfAttributesPerCall)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCommandTimeOut)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -69,10 +75,11 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.btnTestConnection);
             this.panel2.Controls.Add(this.btnOK);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 142);
+            this.panel2.Location = new System.Drawing.Point(0, 243);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(417, 39);
@@ -190,11 +197,87 @@
             this.chkFilterAttributes.Text = "Filter attributes";
             this.chkFilterAttributes.UseVisualStyleBackColor = true;
             // 
+            // chkUseSQL
+            // 
+            this.chkUseSQL.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkUseSQL.Location = new System.Drawing.Point(7, 128);
+            this.chkUseSQL.Name = "chkUseSQL";
+            this.chkUseSQL.Size = new System.Drawing.Size(168, 24);
+            this.chkUseSQL.TabIndex = 7;
+            this.chkUseSQL.Text = "Use Direct SQL Query";
+            this.chkUseSQL.UseVisualStyleBackColor = true;
+            this.chkUseSQL.CheckedChanged += new System.EventHandler(this.chkUseSQL_CheckedChanged);
+            // 
+            // tbSQLConnectionString
+            // 
+            this.tbSQLConnectionString.Enabled = false;
+            this.tbSQLConnectionString.Location = new System.Drawing.Point(11, 160);
+            this.tbSQLConnectionString.Multiline = true;
+            this.tbSQLConnectionString.Name = "tbSQLConnectionString";
+            this.tbSQLConnectionString.Size = new System.Drawing.Size(397, 78);
+            this.tbSQLConnectionString.TabIndex = 8;
+            this.tbSQLConnectionString.Text = "Data Source=;Initial Catalog=;Integrated Security=SSPI";
+            // 
+            // btnTestConnection
+            // 
+            this.btnTestConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTestConnection.Location = new System.Drawing.Point(137, 8);
+            this.btnTestConnection.Name = "btnTestConnection";
+            this.btnTestConnection.Size = new System.Drawing.Size(109, 23);
+            this.btnTestConnection.TabIndex = 6;
+            this.btnTestConnection.Text = "Test Connection";
+            this.btnTestConnection.UseVisualStyleBackColor = true;
+            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
+            // 
+            // nudCommandTimeOut
+            // 
+            this.nudCommandTimeOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudCommandTimeOut.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudCommandTimeOut.Location = new System.Drawing.Point(298, 130);
+            this.nudCommandTimeOut.Margin = new System.Windows.Forms.Padding(2);
+            this.nudCommandTimeOut.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.nudCommandTimeOut.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudCommandTimeOut.Name = "nudCommandTimeOut";
+            this.nudCommandTimeOut.Size = new System.Drawing.Size(110, 20);
+            this.nudCommandTimeOut.TabIndex = 9;
+            this.nudCommandTimeOut.Value = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            // 
+            // lblCommandTimeout
+            // 
+            this.lblCommandTimeout.AutoSize = true;
+            this.lblCommandTimeout.Location = new System.Drawing.Point(193, 134);
+            this.lblCommandTimeout.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCommandTimeout.Name = "lblCommandTimeout";
+            this.lblCommandTimeout.Size = new System.Drawing.Size(97, 13);
+            this.lblCommandTimeout.TabIndex = 10;
+            this.lblCommandTimeout.Text = "Command TimeOut";
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 181);
+            this.ClientSize = new System.Drawing.Size(417, 282);
+            this.Controls.Add(this.lblCommandTimeout);
+            this.Controls.Add(this.nudCommandTimeOut);
+            this.Controls.Add(this.tbSQLConnectionString);
+            this.Controls.Add(this.chkUseSQL);
             this.Controls.Add(this.chkFilterAttributes);
             this.Controls.Add(this.nudNumberOfAttributesPerCall);
             this.Controls.Add(this.label1);
@@ -211,6 +294,7 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfRecordsPerCall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfAttributesPerCall)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCommandTimeOut)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,5 +312,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nudNumberOfAttributesPerCall;
         private System.Windows.Forms.CheckBox chkFilterAttributes;
+        private System.Windows.Forms.CheckBox chkUseSQL;
+        private System.Windows.Forms.TextBox tbSQLConnectionString;
+        private System.Windows.Forms.Button btnTestConnection;
+        private System.Windows.Forms.NumericUpDown nudCommandTimeOut;
+        private System.Windows.Forms.Label lblCommandTimeout;
     }
 }

@@ -18,5 +18,9 @@ namespace MscrmTools.AttributeUsageInspector
 
         [XmlIgnore]
         public IDictionary<string, EntityFilterSetting> Filters { get; } = new Dictionary<string, EntityFilterSetting>();
+
+        public string SQLConnectionString = string.Empty;
+        internal bool UseSQLQuery = false;
+        internal int SQLCommandTimeout;
     }
 }

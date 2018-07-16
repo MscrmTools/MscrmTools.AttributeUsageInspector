@@ -13,8 +13,8 @@ namespace MscrmTools.AttributeUsageInspector
     /// </summary>
     internal class MetadataHelper
     {
-        private static readonly string[] EntityMetadataProperties = { "LogicalName", "DisplayName", "Attributes", "PrimaryIdAttribute", "ObjectTypeCode" };
-        private static readonly string[] AttributeMetadataProperties = { "DisplayName", "LogicalName", "AttributeType", "IsValidForRead", "AttributeOf", "IsCustomAttribute" };
+        private static readonly string[] EntityMetadataProperties = { "LogicalName", "DisplayName", "Attributes", "PrimaryIdAttribute", "ObjectTypeCode", "SchemaName" };
+        private static readonly string[] AttributeMetadataProperties = { "DisplayName", "LogicalName", "AttributeType", "IsValidForRead", "AttributeOf", "IsCustomAttribute", "SchemaName" };
 
         public static EntityMetadataCollection LoadEntities(IOrganizationService service)
         {
