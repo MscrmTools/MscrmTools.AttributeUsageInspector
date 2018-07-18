@@ -115,6 +115,7 @@
     <Compile Include="DataGridViewProgressColumn.cs" />
     <Compile Include="DetectionResults.cs" />
     <Compile Include="DetectiveEngine.cs" />
+    <Compile Include="EntityFilterSetting.cs" />
     <Compile Include="ExcelEngine.cs" />
     <Compile Include="FilterAttributesDialog.cs">
       <SubType>Form</SubType>

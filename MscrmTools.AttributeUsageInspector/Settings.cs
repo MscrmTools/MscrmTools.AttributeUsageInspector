@@ -17,12 +17,10 @@ namespace MscrmTools.AttributeUsageInspector
         public bool FilterAttributes { get; set; }
 
         [XmlIgnore]
-        public List<string> Attributes { get; set; }
+        public IDictionary<string, EntityFilterSetting> Filters { get; } = new Dictionary<string, EntityFilterSetting>();
 
-        [XmlIgnore]
-        public bool ShowOnlyCustom { get; set; }
-
-        [XmlIgnore]
-        public bool ShowOnlyStandard { get; set; }
+        public string SQLConnectionString = string.Empty;
+        internal bool UseSQLQuery = false;
+        internal int SQLCommandTimeout;
     }
 }

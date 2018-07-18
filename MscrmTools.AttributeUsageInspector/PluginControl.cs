@@ -123,10 +123,11 @@ namespace MscrmTools.AttributeUsageInspector
                 {
                     return;
                 }
-
-                settings.Attributes = dialog.Attributes;
-                settings.ShowOnlyCustom = dialog.ShowCustomOnly;
-                settings.ShowOnlyStandard = dialog.ShowStandardOnly;
+                EntityFilterSetting fs = new EntityFilterSetting();
+                fs.Attributes = dialog.Attributes;
+                fs.ShowOnlyCustom = dialog.ShowCustomOnly;
+                fs.ShowOnlyStandard = dialog.ShowStandardOnly;
+                settings.Filters[dialog.entityLogicalName] = fs;
             }
 
             ExecuteMethod(LoadDataUsage, false);
@@ -385,6 +386,9 @@ namespace MscrmTools.AttributeUsageInspector
                 settings.AttributesReturnedPerTrip = dialog.Settings.AttributesReturnedPerTrip;
                 settings.RecordsReturnedPerTrip = dialog.Settings.RecordsReturnedPerTrip;
                 settings.FilterAttributes = dialog.Settings.FilterAttributes;
+                settings.UseSQLQuery = dialog.Settings.UseSQLQuery;
+                settings.SQLCommandTimeout = dialog.Settings.SQLCommandTimeout;
+                settings.SQLConnectionString = dialog.Settings.SQLConnectionString;
                 SettingsManager.Instance.Save(typeof(PluginControl), settings);
             }
         }

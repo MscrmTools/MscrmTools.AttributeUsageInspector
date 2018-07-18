@@ -17,7 +17,7 @@ namespace MscrmTools.AttributeUsageInspector
     public partial class FilterAttributesDialog : Form
     {
         private int columnSortedIndex = 0;
-        private readonly string entityLogicalName;
+        public readonly string entityLogicalName;
         private readonly IOrganizationService service;
 
         public FilterAttributesDialog(IOrganizationService service, string entityLogicalName)
@@ -57,7 +57,10 @@ namespace MscrmTools.AttributeUsageInspector
         {
             var emds = MetadataHelper.LoadAttributes(service, entityLogicalName);
 
-            lvAttributes.Items.AddRange(emds.First().Attributes.Select(a => new ListViewItem(a.DisplayName?.UserLocalizedLabel?.Label ?? "N/A") { Tag = a, SubItems = { a.LogicalName } }).ToArray());
+            lvAttributes.Items.AddRange(MetadataHelper.FilterAttributes(emds.First().Attributes)
+                .Select(a => new ListViewItem(a.DisplayName?.UserLocalizedLabel?.Label ?? "N/A") {
+                    Tag = a, SubItems = { a.LogicalName }
+                }).ToArray());
         }
 
         private void btnOK_Click(object sender, EventArgs e)

@@ -8,14 +8,39 @@ namespace MscrmTools.AttributeUsageInspector
     class ExcelEngine
     {
         private readonly ExcelPackage innerWorkBook;
+        private int entityCount = 0;
+        private ExcelWorksheet summaryWkSh;
 
         public ExcelEngine()
         {
             innerWorkBook = new ExcelPackage();
+            summaryWkSh = AddWorkSheet("Summary");
+            summaryWkSh.Cells[1, 1].Value = "Displayname";
+            summaryWkSh.Cells[1, 2].Value = "Logical name";
+            summaryWkSh.Cells[1, 3].Value = "Row Count";
+            
         }
+
+        private void addEntitySummary(EntityMetadata emd, DetectionResults data)
+        {
+            int rownum = ++entityCount + 1;
+            summaryWkSh.Cells[rownum, 1].Value = emd.DisplayName.UserLocalizedLabel != null ? emd.DisplayName.UserLocalizedLabel.Label : "N/A";
+            summaryWkSh.Cells[rownum, 2].Value = emd.LogicalName;
+            if (data.Fault != null)
+            {
+                summaryWkSh.Cells[rownum, 4].Value = data.Fault.Message;
+            }
+            else
+            {
+                summaryWkSh.Cells[rownum, 3].Value = data.Total;
+            }
+            
+        }
+
 
         public void AddEntity(EntityMetadata emd, DetectionResults data)
         {
+            addEntitySummary(emd, data);
             var sheet = AddWorkSheet(emd.DisplayName.UserLocalizedLabel != null ? emd.DisplayName.UserLocalizedLabel.Label : "N/A", emd.LogicalName);
 
             if (data.Fault != null)
@@ -31,6 +56,7 @@ namespace MscrmTools.AttributeUsageInspector
             sheet.Cells[i, 3].Value = "Attribute Type";
             sheet.Cells[i, 4].Value = "On Form(s)";
             sheet.Cells[i, 5].Value = "Data usage";
+            sheet.Cells[i, 6].Value = "Data count";
 
             foreach (var result in data.Results)
             {
@@ -39,8 +65,11 @@ namespace MscrmTools.AttributeUsageInspector
                 sheet.Cells[i, 2].Value = result.Attribute.LogicalName;
                 sheet.Cells[i, 3].Value = result.Attribute.AttributeType.Value;
                 sheet.Cells[i, 4].Value = data.AttributeIsContainedInForms(result.Attribute.LogicalName);
-                sheet.Cells[i, 5].Value = result.Percentage;
+                sheet.Cells[i, 5].Value = result.Percentage/100.0;
+                sheet.Cells[i, 5].Style.Numberformat.Format = "#0.00%";
+                sheet.Cells[i, 6].Value = result.NotNull;
             }
+            sheet.Cells[1,1,i,6].AutoFitColumns();
         }
 
         /// <summary>
@@ -105,6 +134,7 @@ namespace MscrmTools.AttributeUsageInspector
 
         public void Save(string path)
         {
+            summaryWkSh.Cells[1,1,entityCount+1,4].AutoFitColumns();
             innerWorkBook.SaveAs(new FileInfo(path));
         }
     }
