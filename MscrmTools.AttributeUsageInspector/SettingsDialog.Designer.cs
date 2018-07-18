@@ -31,6 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblHeader = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnTestConnection = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblNbrOfRecordsPerCall = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.chkFilterAttributes = new System.Windows.Forms.CheckBox();
             this.chkUseSQL = new System.Windows.Forms.CheckBox();
             this.tbSQLConnectionString = new System.Windows.Forms.TextBox();
-            this.btnTestConnection = new System.Windows.Forms.Button();
             this.nudCommandTimeOut = new System.Windows.Forms.NumericUpDown();
             this.lblCommandTimeout = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -56,19 +56,19 @@
             this.panel1.Controls.Add(this.lblHeader);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(417, 39);
+            this.panel1.Size = new System.Drawing.Size(765, 72);
             this.panel1.TabIndex = 0;
             // 
             // lblHeader
             // 
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Segoe UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(2, 6);
-            this.lblHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeader.Location = new System.Drawing.Point(4, 11);
+            this.lblHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(75, 25);
+            this.lblHeader.Size = new System.Drawing.Size(129, 45);
             this.lblHeader.TabIndex = 0;
             this.lblHeader.Text = "Settings";
             // 
@@ -79,18 +79,32 @@
             this.panel2.Controls.Add(this.btnOK);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 243);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Location = new System.Drawing.Point(0, 449);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(417, 39);
+            this.panel2.Size = new System.Drawing.Size(765, 72);
             this.panel2.TabIndex = 1;
+            // 
+            // btnTestConnection
+            // 
+            this.btnTestConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTestConnection.Location = new System.Drawing.Point(20, 13);
+            this.btnTestConnection.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnTestConnection.Name = "btnTestConnection";
+            this.btnTestConnection.Size = new System.Drawing.Size(200, 42);
+            this.btnTestConnection.TabIndex = 6;
+            this.btnTestConnection.Text = "Test Connection";
+            this.btnTestConnection.UseVisualStyleBackColor = true;
+            this.btnTestConnection.Visible = false;
+            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(253, 7);
+            this.btnOK.Location = new System.Drawing.Point(464, 13);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(138, 42);
             this.btnOK.TabIndex = 5;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -99,9 +113,10 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(333, 7);
+            this.btnCancel.Location = new System.Drawing.Point(611, 13);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(138, 42);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -110,10 +125,10 @@
             // lblNbrOfRecordsPerCall
             // 
             this.lblNbrOfRecordsPerCall.AutoSize = true;
-            this.lblNbrOfRecordsPerCall.Location = new System.Drawing.Point(8, 47);
-            this.lblNbrOfRecordsPerCall.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNbrOfRecordsPerCall.Location = new System.Drawing.Point(15, 87);
+            this.lblNbrOfRecordsPerCall.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNbrOfRecordsPerCall.Name = "lblNbrOfRecordsPerCall";
-            this.lblNbrOfRecordsPerCall.Size = new System.Drawing.Size(131, 13);
+            this.lblNbrOfRecordsPerCall.Size = new System.Drawing.Size(239, 25);
             this.lblNbrOfRecordsPerCall.TabIndex = 2;
             this.lblNbrOfRecordsPerCall.Text = "Number of records per call";
             // 
@@ -126,8 +141,8 @@
             0,
             0,
             0});
-            this.nudNumberOfRecordsPerCall.Location = new System.Drawing.Point(161, 45);
-            this.nudNumberOfRecordsPerCall.Margin = new System.Windows.Forms.Padding(2);
+            this.nudNumberOfRecordsPerCall.Location = new System.Drawing.Point(295, 83);
+            this.nudNumberOfRecordsPerCall.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nudNumberOfRecordsPerCall.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -139,7 +154,7 @@
             0,
             0});
             this.nudNumberOfRecordsPerCall.Name = "nudNumberOfRecordsPerCall";
-            this.nudNumberOfRecordsPerCall.Size = new System.Drawing.Size(247, 20);
+            this.nudNumberOfRecordsPerCall.Size = new System.Drawing.Size(453, 29);
             this.nudNumberOfRecordsPerCall.TabIndex = 3;
             this.nudNumberOfRecordsPerCall.Value = new decimal(new int[] {
             10,
@@ -150,10 +165,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 77);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(15, 142);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 13);
+            this.label1.Size = new System.Drawing.Size(253, 25);
             this.label1.TabIndex = 4;
             this.label1.Text = "Number of attributes per call";
             // 
@@ -166,8 +181,8 @@
             0,
             0,
             0});
-            this.nudNumberOfAttributesPerCall.Location = new System.Drawing.Point(161, 75);
-            this.nudNumberOfAttributesPerCall.Margin = new System.Windows.Forms.Padding(2);
+            this.nudNumberOfAttributesPerCall.Location = new System.Drawing.Point(295, 138);
+            this.nudNumberOfAttributesPerCall.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nudNumberOfAttributesPerCall.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -179,7 +194,7 @@
             0,
             0});
             this.nudNumberOfAttributesPerCall.Name = "nudNumberOfAttributesPerCall";
-            this.nudNumberOfAttributesPerCall.Size = new System.Drawing.Size(247, 20);
+            this.nudNumberOfAttributesPerCall.Size = new System.Drawing.Size(453, 29);
             this.nudNumberOfAttributesPerCall.TabIndex = 5;
             this.nudNumberOfAttributesPerCall.Value = new decimal(new int[] {
             50,
@@ -190,9 +205,10 @@
             // chkFilterAttributes
             // 
             this.chkFilterAttributes.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkFilterAttributes.Location = new System.Drawing.Point(7, 100);
+            this.chkFilterAttributes.Location = new System.Drawing.Point(13, 185);
+            this.chkFilterAttributes.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.chkFilterAttributes.Name = "chkFilterAttributes";
-            this.chkFilterAttributes.Size = new System.Drawing.Size(168, 24);
+            this.chkFilterAttributes.Size = new System.Drawing.Size(308, 44);
             this.chkFilterAttributes.TabIndex = 6;
             this.chkFilterAttributes.Text = "Filter attributes";
             this.chkFilterAttributes.UseVisualStyleBackColor = true;
@@ -200,9 +216,10 @@
             // chkUseSQL
             // 
             this.chkUseSQL.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkUseSQL.Location = new System.Drawing.Point(7, 128);
+            this.chkUseSQL.Location = new System.Drawing.Point(13, 236);
+            this.chkUseSQL.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.chkUseSQL.Name = "chkUseSQL";
-            this.chkUseSQL.Size = new System.Drawing.Size(168, 24);
+            this.chkUseSQL.Size = new System.Drawing.Size(308, 44);
             this.chkUseSQL.TabIndex = 7;
             this.chkUseSQL.Text = "Use Direct SQL Query";
             this.chkUseSQL.UseVisualStyleBackColor = true;
@@ -211,23 +228,13 @@
             // tbSQLConnectionString
             // 
             this.tbSQLConnectionString.Enabled = false;
-            this.tbSQLConnectionString.Location = new System.Drawing.Point(11, 160);
+            this.tbSQLConnectionString.Location = new System.Drawing.Point(20, 295);
+            this.tbSQLConnectionString.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tbSQLConnectionString.Multiline = true;
             this.tbSQLConnectionString.Name = "tbSQLConnectionString";
-            this.tbSQLConnectionString.Size = new System.Drawing.Size(397, 78);
+            this.tbSQLConnectionString.Size = new System.Drawing.Size(725, 141);
             this.tbSQLConnectionString.TabIndex = 8;
             this.tbSQLConnectionString.Text = "Data Source=;Initial Catalog=;Integrated Security=SSPI";
-            // 
-            // btnTestConnection
-            // 
-            this.btnTestConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTestConnection.Location = new System.Drawing.Point(137, 8);
-            this.btnTestConnection.Name = "btnTestConnection";
-            this.btnTestConnection.Size = new System.Drawing.Size(109, 23);
-            this.btnTestConnection.TabIndex = 6;
-            this.btnTestConnection.Text = "Test Connection";
-            this.btnTestConnection.UseVisualStyleBackColor = true;
-            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
             // nudCommandTimeOut
             // 
@@ -238,8 +245,8 @@
             0,
             0,
             0});
-            this.nudCommandTimeOut.Location = new System.Drawing.Point(298, 130);
-            this.nudCommandTimeOut.Margin = new System.Windows.Forms.Padding(2);
+            this.nudCommandTimeOut.Location = new System.Drawing.Point(546, 240);
+            this.nudCommandTimeOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nudCommandTimeOut.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -251,7 +258,7 @@
             0,
             0});
             this.nudCommandTimeOut.Name = "nudCommandTimeOut";
-            this.nudCommandTimeOut.Size = new System.Drawing.Size(110, 20);
+            this.nudCommandTimeOut.Size = new System.Drawing.Size(202, 29);
             this.nudCommandTimeOut.TabIndex = 9;
             this.nudCommandTimeOut.Value = new decimal(new int[] {
             120,
@@ -262,18 +269,18 @@
             // lblCommandTimeout
             // 
             this.lblCommandTimeout.AutoSize = true;
-            this.lblCommandTimeout.Location = new System.Drawing.Point(193, 134);
-            this.lblCommandTimeout.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCommandTimeout.Location = new System.Drawing.Point(354, 247);
+            this.lblCommandTimeout.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCommandTimeout.Name = "lblCommandTimeout";
-            this.lblCommandTimeout.Size = new System.Drawing.Size(97, 13);
+            this.lblCommandTimeout.Size = new System.Drawing.Size(184, 25);
             this.lblCommandTimeout.TabIndex = 10;
             this.lblCommandTimeout.Text = "Command TimeOut";
             // 
             // SettingsDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 282);
+            this.ClientSize = new System.Drawing.Size(765, 521);
             this.Controls.Add(this.lblCommandTimeout);
             this.Controls.Add(this.nudCommandTimeOut);
             this.Controls.Add(this.tbSQLConnectionString);
@@ -286,7 +293,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "SettingsDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.panel1.ResumeLayout(false);
