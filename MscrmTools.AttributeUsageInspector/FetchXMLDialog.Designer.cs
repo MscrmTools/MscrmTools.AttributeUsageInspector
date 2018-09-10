@@ -39,6 +39,7 @@
             this.cmb_systemViews = new System.Windows.Forms.ComboBox();
             this.label_systemviews = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txb_validationResult = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -49,18 +50,20 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.txb_validationResult);
             this.panel2.Controls.Add(this.btnOK);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 552);
+            this.panel2.Location = new System.Drawing.Point(0, 569);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(617, 60);
+            this.panel2.Size = new System.Drawing.Size(617, 69);
             this.panel2.TabIndex = 2;
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(371, 11);
+            this.btnOK.Enabled = false;
+            this.btnOK.Location = new System.Drawing.Point(371, 20);
             this.btnOK.Margin = new System.Windows.Forms.Padding(5);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(113, 35);
@@ -72,7 +75,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(491, 11);
+            this.btnCancel.Location = new System.Drawing.Point(491, 20);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(113, 35);
@@ -87,9 +90,10 @@
             this.rTxtB_FetchXMLQuery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rTxtB_FetchXMLQuery.Location = new System.Drawing.Point(10, 10);
             this.rTxtB_FetchXMLQuery.Name = "rTxtB_FetchXMLQuery";
-            this.rTxtB_FetchXMLQuery.Size = new System.Drawing.Size(597, 348);
+            this.rTxtB_FetchXMLQuery.Size = new System.Drawing.Size(597, 360);
             this.rTxtB_FetchXMLQuery.TabIndex = 3;
             this.rTxtB_FetchXMLQuery.Text = "Loading views... Please wait";
+            this.rTxtB_FetchXMLQuery.TextChanged += new System.EventHandler(this.rTxtB_FetchXMLQuery_TextChanged);
             // 
             // splitContainer1
             // 
@@ -111,8 +115,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rTxtB_FetchXMLQuery);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer1.Size = new System.Drawing.Size(617, 552);
-            this.splitContainer1.SplitterDistance = 180;
+            this.splitContainer1.Size = new System.Drawing.Size(617, 569);
+            this.splitContainer1.SplitterDistance = 185;
             this.splitContainer1.TabIndex = 4;
             // 
             // label5
@@ -169,17 +173,30 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Choose a view or just paste your FetchXML query in this editor.";
             // 
+            // txb_validationResult
+            // 
+            this.txb_validationResult.BackColor = System.Drawing.SystemColors.Control;
+            this.txb_validationResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txb_validationResult.Location = new System.Drawing.Point(10, 20);
+            this.txb_validationResult.Multiline = true;
+            this.txb_validationResult.Name = "txb_validationResult";
+            this.txb_validationResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txb_validationResult.Size = new System.Drawing.Size(347, 35);
+            this.txb_validationResult.TabIndex = 6;
+            this.txb_validationResult.Text = "Validating FetchXML query ...";
+            // 
             // FetchXMLDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 612);
+            this.ClientSize = new System.Drawing.Size(617, 638);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel2);
             this.Name = "FetchXMLDialog";
             this.ShowIcon = false;
             this.Text = "FetchXML Query";
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -202,5 +219,6 @@
         private System.Windows.Forms.ComboBox cmb_userviews;
         private System.Windows.Forms.Label label_userviews;
         private System.Windows.Forms.ComboBox cmb_systemViews;
+        private System.Windows.Forms.TextBox txb_validationResult;
     }
 }
