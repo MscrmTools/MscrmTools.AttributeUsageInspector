@@ -61,19 +61,19 @@
             this.panel2.Controls.Add(this.btnOK);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 353);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Location = new System.Drawing.Point(0, 543);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(454, 39);
+            this.panel2.Size = new System.Drawing.Size(681, 60);
             this.panel2.TabIndex = 3;
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(290, 7);
+            this.btnOK.Location = new System.Drawing.Point(435, 11);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(112, 35);
             this.btnOK.TabIndex = 5;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -83,9 +83,10 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(370, 7);
+            this.btnCancel.Location = new System.Drawing.Point(555, 11);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(112, 35);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -97,19 +98,17 @@
             this.panel1.Controls.Add(this.lblHeader);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(454, 39);
+            this.panel1.Size = new System.Drawing.Size(681, 60);
             this.panel1.TabIndex = 2;
             // 
             // lblHeader
             // 
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Segoe UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(2, 6);
-            this.lblHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeader.Location = new System.Drawing.Point(3, 9);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(131, 25);
+            this.lblHeader.Size = new System.Drawing.Size(190, 38);
             this.lblHeader.TabIndex = 0;
             this.lblHeader.Text = "Filter attributes";
             // 
@@ -117,9 +116,10 @@
             // 
             this.rbAll.AutoSize = true;
             this.rbAll.Checked = true;
-            this.rbAll.Location = new System.Drawing.Point(3, 5);
+            this.rbAll.Location = new System.Drawing.Point(4, 8);
+            this.rbAll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbAll.Name = "rbAll";
-            this.rbAll.Size = new System.Drawing.Size(36, 17);
+            this.rbAll.Size = new System.Drawing.Size(51, 24);
             this.rbAll.TabIndex = 4;
             this.rbAll.TabStop = true;
             this.rbAll.Text = "All";
@@ -128,9 +128,10 @@
             // rbCustom
             // 
             this.rbCustom.AutoSize = true;
-            this.rbCustom.Location = new System.Drawing.Point(3, 28);
+            this.rbCustom.Location = new System.Drawing.Point(4, 43);
+            this.rbCustom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbCustom.Name = "rbCustom";
-            this.rbCustom.Size = new System.Drawing.Size(129, 17);
+            this.rbCustom.Size = new System.Drawing.Size(192, 24);
             this.rbCustom.TabIndex = 5;
             this.rbCustom.Text = "Only custom attributes";
             this.rbCustom.UseVisualStyleBackColor = true;
@@ -138,9 +139,10 @@
             // rbStandard
             // 
             this.rbStandard.AutoSize = true;
-            this.rbStandard.Location = new System.Drawing.Point(3, 51);
+            this.rbStandard.Location = new System.Drawing.Point(4, 78);
+            this.rbStandard.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbStandard.Name = "rbStandard";
-            this.rbStandard.Size = new System.Drawing.Size(136, 17);
+            this.rbStandard.Size = new System.Drawing.Size(203, 24);
             this.rbStandard.TabIndex = 6;
             this.rbStandard.Text = "Only standard attributes";
             this.rbStandard.UseVisualStyleBackColor = true;
@@ -148,9 +150,10 @@
             // rbChoose
             // 
             this.rbChoose.AutoSize = true;
-            this.rbChoose.Location = new System.Drawing.Point(3, 74);
+            this.rbChoose.Location = new System.Drawing.Point(4, 114);
+            this.rbChoose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rbChoose.Name = "rbChoose";
-            this.rbChoose.Size = new System.Drawing.Size(95, 17);
+            this.rbChoose.Size = new System.Drawing.Size(139, 24);
             this.rbChoose.TabIndex = 7;
             this.rbChoose.Text = "Let me choose";
             this.rbChoose.UseVisualStyleBackColor = true;
@@ -163,9 +166,10 @@
             this.panel3.Controls.Add(this.rbChoose);
             this.panel3.Controls.Add(this.rbStandard);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 39);
+            this.panel3.Location = new System.Drawing.Point(0, 60);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(454, 100);
+            this.panel3.Size = new System.Drawing.Size(681, 154);
             this.panel3.TabIndex = 9;
             // 
             // gbAttributesSelection
@@ -174,9 +178,11 @@
             this.gbAttributesSelection.Controls.Add(this.panel4);
             this.gbAttributesSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbAttributesSelection.Enabled = false;
-            this.gbAttributesSelection.Location = new System.Drawing.Point(0, 139);
+            this.gbAttributesSelection.Location = new System.Drawing.Point(0, 214);
+            this.gbAttributesSelection.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gbAttributesSelection.Name = "gbAttributesSelection";
-            this.gbAttributesSelection.Size = new System.Drawing.Size(454, 214);
+            this.gbAttributesSelection.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gbAttributesSelection.Size = new System.Drawing.Size(681, 329);
             this.gbAttributesSelection.TabIndex = 10;
             this.gbAttributesSelection.TabStop = false;
             this.gbAttributesSelection.Text = "Select attributes to audit";
@@ -188,9 +194,10 @@
             this.chDisplayName,
             this.chLogicalName});
             this.lvAttributes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvAttributes.Location = new System.Drawing.Point(3, 34);
+            this.lvAttributes.Location = new System.Drawing.Point(4, 52);
+            this.lvAttributes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lvAttributes.Name = "lvAttributes";
-            this.lvAttributes.Size = new System.Drawing.Size(448, 177);
+            this.lvAttributes.Size = new System.Drawing.Size(673, 272);
             this.lvAttributes.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvAttributes.TabIndex = 2;
             this.lvAttributes.UseCompatibleStateImageBehavior = false;
@@ -215,18 +222,20 @@
             this.panel4.Controls.Add(this.llNone);
             this.panel4.Controls.Add(this.llSelectAll);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(3, 16);
+            this.panel4.Location = new System.Drawing.Point(4, 24);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(448, 18);
+            this.panel4.Size = new System.Drawing.Size(673, 28);
             this.panel4.TabIndex = 1;
             // 
             // llInvertSelection
             // 
             this.llInvertSelection.AutoSize = true;
             this.llInvertSelection.Dock = System.Windows.Forms.DockStyle.Right;
-            this.llInvertSelection.Location = new System.Drawing.Point(100, 0);
+            this.llInvertSelection.Location = new System.Drawing.Point(159, 0);
+            this.llInvertSelection.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.llInvertSelection.Name = "llInvertSelection";
-            this.llInvertSelection.Size = new System.Drawing.Size(79, 13);
+            this.llInvertSelection.Size = new System.Drawing.Size(116, 20);
             this.llInvertSelection.TabIndex = 5;
             this.llInvertSelection.TabStop = true;
             this.llInvertSelection.Text = "Invert selection";
@@ -236,9 +245,10 @@
             // 
             this.llStandard.AutoSize = true;
             this.llStandard.Dock = System.Windows.Forms.DockStyle.Right;
-            this.llStandard.Location = new System.Drawing.Point(179, 0);
+            this.llStandard.Location = new System.Drawing.Point(275, 0);
+            this.llStandard.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.llStandard.Name = "llStandard";
-            this.llStandard.Size = new System.Drawing.Size(81, 13);
+            this.llStandard.Size = new System.Drawing.Size(121, 20);
             this.llStandard.TabIndex = 4;
             this.llStandard.TabStop = true;
             this.llStandard.Text = "Select standard";
@@ -248,9 +258,10 @@
             // 
             this.llCustom.AutoSize = true;
             this.llCustom.Dock = System.Windows.Forms.DockStyle.Right;
-            this.llCustom.Location = new System.Drawing.Point(260, 0);
+            this.llCustom.Location = new System.Drawing.Point(396, 0);
+            this.llCustom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.llCustom.Name = "llCustom";
-            this.llCustom.Size = new System.Drawing.Size(74, 13);
+            this.llCustom.Size = new System.Drawing.Size(110, 20);
             this.llCustom.TabIndex = 3;
             this.llCustom.TabStop = true;
             this.llCustom.Text = "Select custom";
@@ -260,9 +271,10 @@
             // 
             this.llNone.AutoSize = true;
             this.llNone.Dock = System.Windows.Forms.DockStyle.Right;
-            this.llNone.Location = new System.Drawing.Point(334, 0);
+            this.llNone.Location = new System.Drawing.Point(506, 0);
+            this.llNone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.llNone.Name = "llNone";
-            this.llNone.Size = new System.Drawing.Size(64, 13);
+            this.llNone.Size = new System.Drawing.Size(94, 20);
             this.llNone.TabIndex = 1;
             this.llNone.TabStop = true;
             this.llNone.Text = "Select none";
@@ -272,9 +284,10 @@
             // 
             this.llSelectAll.AutoSize = true;
             this.llSelectAll.Dock = System.Windows.Forms.DockStyle.Right;
-            this.llSelectAll.Location = new System.Drawing.Point(398, 0);
+            this.llSelectAll.Location = new System.Drawing.Point(600, 0);
+            this.llSelectAll.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.llSelectAll.Name = "llSelectAll";
-            this.llSelectAll.Size = new System.Drawing.Size(50, 13);
+            this.llSelectAll.Size = new System.Drawing.Size(73, 20);
             this.llSelectAll.TabIndex = 0;
             this.llSelectAll.TabStop = true;
             this.llSelectAll.Text = "Select all";
@@ -282,13 +295,14 @@
             // 
             // FilterAttributesDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 392);
+            this.ClientSize = new System.Drawing.Size(681, 603);
             this.Controls.Add(this.gbAttributesSelection);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FilterAttributesDialog";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

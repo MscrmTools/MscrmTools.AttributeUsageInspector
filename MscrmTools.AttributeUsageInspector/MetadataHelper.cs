@@ -99,5 +99,10 @@ namespace MscrmTools.AttributeUsageInspector
                             && a.LogicalName.IndexOf("composite") < 0
                             ).OrderBy(a => a.LogicalName);
         }
+
+        public static AttributeMetadata GetMetadataAttribute (AttributeMetadata[] attributes, string attributeName)
+        {
+            return attributes.Where(a => a.LogicalName == attributeName).FirstOrDefault();
+        }
     }
 }
