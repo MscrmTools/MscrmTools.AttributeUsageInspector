@@ -25,11 +25,13 @@ namespace MscrmTools.AttributeUsageInspector
             chkFilterAttributes.Checked = settings.FilterAttributes;
 
             chkUseSQL.Checked = settings.UseSQLQuery;
+            chkUseFetchXMLQuery.Checked = settings.UseFetchXMLQuery;
 
             tbSQLConnectionString.Text = settings.SQLConnectionString;
             btnTestConnection.Visible = chkUseSQL.Checked;
             lblCommandTimeout.Enabled = chkUseSQL.Checked;
             nudCommandTimeOut.Enabled = chkUseSQL.Checked;
+
         }
 
         public Settings Settings { get; }
@@ -70,6 +72,7 @@ namespace MscrmTools.AttributeUsageInspector
             Settings.UseSQLQuery = chkUseSQL.Checked;
             Settings.SQLConnectionString = tbSQLConnectionString.Text;
             Settings.SQLCommandTimeout = Convert.ToInt32(nudCommandTimeOut.Value);
+            Settings.UseFetchXMLQuery = chkUseFetchXMLQuery.Checked;
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -85,6 +88,46 @@ namespace MscrmTools.AttributeUsageInspector
             btnTestConnection.Visible = chkUseSQL.Checked;
             lblCommandTimeout.Enabled = chkUseSQL.Checked;
             nudCommandTimeOut.Enabled = chkUseSQL.Checked;
+            if (chkUseSQL.Checked)
+            {
+                chkUseFetchXMLQuery.Checked = false;
+                chkUseFetchXMLQuery.Enabled = false;
+            }
+            else
+            {
+                chkUseFetchXMLQuery.Enabled = true;
+            }
+        }
+
+        private void chkUseFetchXMLQuery_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkUseFetchXMLQuery.Checked)
+            {
+                chkUseSQL.Checked = false;
+                chkUseSQL.Enabled = false;
+                chkFilterAttributes.Checked = false;
+                chkFilterAttributes.Enabled = false;
+                nudNumberOfAttributesPerCall.Enabled = false;
+            }
+            else
+            {
+                chkUseSQL.Enabled = true;
+                chkFilterAttributes.Enabled = true;
+                nudNumberOfAttributesPerCall.Enabled = true;
+            }
+        }
+
+        private void chkFilterAttributes_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkFilterAttributes.Checked)
+            {
+                chkUseFetchXMLQuery.Checked = false;
+                chkUseFetchXMLQuery.Enabled = false;
+            }
+            else
+            {
+                chkUseFetchXMLQuery.Enabled = true;
+            }
         }
     }
 }

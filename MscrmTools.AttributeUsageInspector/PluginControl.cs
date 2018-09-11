@@ -17,11 +17,16 @@ namespace MscrmTools.AttributeUsageInspector
         private readonly List<DetectionResults> globalResults;
 
         private readonly Settings settings;
+        private EntityMetadataCollection entities;
         private DetectiveEngine de;
 
         public PluginControl()
         {
             InitializeComponent();
+
+#if DEBUG
+            Control.CheckForIllegalCrossThreadCalls = false;
+#endif
 
             if (!SettingsManager.Instance.TryLoad(typeof(PluginControl), out settings))
             {
@@ -129,6 +134,13 @@ namespace MscrmTools.AttributeUsageInspector
                 fs.ShowOnlyStandard = dialog.ShowStandardOnly;
                 settings.Filters[dialog.entityLogicalName] = fs;
             }
+            else if (settings.UseFetchXMLQuery)
+            {
+                FetchXMLDialog fetchXMLDialog = new FetchXMLDialog(Service, settings, (EntityMetadata)lvEntities.SelectedItems[0].Tag, entities);
+                if (fetchXMLDialog.ShowDialog(this) != DialogResult.OK)
+                    return;
+                settings.FetchXMLQuery = fetchXMLDialog.FetchXMLQuery;
+            }
 
             ExecuteMethod(LoadDataUsage, false);
         }
@@ -155,6 +167,47 @@ namespace MscrmTools.AttributeUsageInspector
         private void tsbLoadEntities_Click(object sender, EventArgs e)
         {
             ExecuteMethod(LoadEntities);
+        }
+
+        private void tsbCancel_Click(object sender, EventArgs e)
+        {
+            de.Cancel = true;
+            tssCancel.Visible = false;
+            tsbCancel.Visible = false;
+        }
+
+        private void tsbSettings_Click(object sender, EventArgs e)
+        {
+            var dialog = new SettingsDialog(settings);
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {
+                settings.AttributesReturnedPerTrip = dialog.Settings.AttributesReturnedPerTrip;
+                settings.RecordsReturnedPerTrip = dialog.Settings.RecordsReturnedPerTrip;
+                settings.FilterAttributes = dialog.Settings.FilterAttributes;
+                settings.UseSQLQuery = dialog.Settings.UseSQLQuery;
+                settings.SQLCommandTimeout = dialog.Settings.SQLCommandTimeout;
+                settings.SQLConnectionString = dialog.Settings.SQLConnectionString;
+                SettingsManager.Instance.Save(typeof(PluginControl), settings);
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            lvEntities.SelectedIndexChanged -= lvEntities_SelectedIndexChanged;
+            lvEntities.Items.Clear();
+
+            if (txtSearch.Text.Length == 0)
+            {
+                lvEntities.Items.AddRange(allItems.ToArray());
+            }
+            else
+            {
+                lvEntities.Items.AddRange(allItems
+                    .Where(i => ((EntityMetadata)i.Tag).LogicalName.IndexOf(txtSearch.Text.ToLower()) >= 0
+                                || ((EntityMetadata)i.Tag).DisplayName?.UserLocalizedLabel?.Label.IndexOf(txtSearch
+                                    .Text.ToLower()) >= 0).ToArray());
+            }
+            lvEntities.SelectedIndexChanged += lvEntities_SelectedIndexChanged;
         }
 
         #endregion Form events
@@ -338,7 +391,9 @@ namespace MscrmTools.AttributeUsageInspector
 
                     var items = new List<ListViewItem>();
 
-                    foreach (var emd in (EntityMetadataCollection)e.Result)
+                    entities = (EntityMetadataCollection)e.Result;
+
+                    foreach (var emd in entities)
                     {
                         var item = new ListViewItem(emd.DisplayName.UserLocalizedLabel != null
                             ? emd.DisplayName.UserLocalizedLabel.Label
@@ -371,45 +426,6 @@ namespace MscrmTools.AttributeUsageInspector
 
         #endregion Business methods
 
-        private void tsbCancel_Click(object sender, EventArgs e)
-        {
-            de.Cancel = true;
-            tssCancel.Visible = false;
-            tsbCancel.Visible = false;
-        }
-
-        private void tsbSettings_Click(object sender, EventArgs e)
-        {
-            var dialog = new SettingsDialog(settings);
-            if (dialog.ShowDialog(this) == DialogResult.OK)
-            {
-                settings.AttributesReturnedPerTrip = dialog.Settings.AttributesReturnedPerTrip;
-                settings.RecordsReturnedPerTrip = dialog.Settings.RecordsReturnedPerTrip;
-                settings.FilterAttributes = dialog.Settings.FilterAttributes;
-                settings.UseSQLQuery = dialog.Settings.UseSQLQuery;
-                settings.SQLCommandTimeout = dialog.Settings.SQLCommandTimeout;
-                settings.SQLConnectionString = dialog.Settings.SQLConnectionString;
-                SettingsManager.Instance.Save(typeof(PluginControl), settings);
-            }
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            lvEntities.SelectedIndexChanged -= lvEntities_SelectedIndexChanged;
-            lvEntities.Items.Clear();
-
-            if (txtSearch.Text.Length == 0)
-            {
-                lvEntities.Items.AddRange(allItems.ToArray());
-            }
-            else
-            {
-                lvEntities.Items.AddRange(allItems
-                    .Where(i => ((EntityMetadata)i.Tag).LogicalName.IndexOf(txtSearch.Text.ToLower()) >= 0
-                                || ((EntityMetadata)i.Tag).DisplayName?.UserLocalizedLabel?.Label.IndexOf(txtSearch
-                                    .Text.ToLower()) >= 0).ToArray());
-            }
-            lvEntities.SelectedIndexChanged += lvEntities_SelectedIndexChanged;
-        }
+        
     }
 }

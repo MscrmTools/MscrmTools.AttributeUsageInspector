@@ -19,6 +19,10 @@ namespace MscrmTools.AttributeUsageInspector
         [XmlIgnore]
         public IDictionary<string, EntityFilterSetting> Filters { get; } = new Dictionary<string, EntityFilterSetting>();
 
+        public bool UseFetchXMLQuery { get; set; }
+        [XmlIgnore]
+        public string FetchXMLQuery = string.Empty;
+
         public string SQLConnectionString = string.Empty;
         internal bool UseSQLQuery = false;
         internal int SQLCommandTimeout;

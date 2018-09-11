@@ -1,4 +1,5 @@
-﻿using Microsoft.Xrm.Sdk;
+﻿using Microsoft.Crm.Sdk.Messages;
+using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
@@ -213,7 +214,6 @@ namespace MscrmTools.AttributeUsageInspector
             return result;
         }
 
-
         private DetectionResults GetUsageSQLCount(EntityMetadata emd, Settings settings, BackgroundWorker worker = null)
         {
             var result = new DetectionResults();
@@ -276,9 +276,84 @@ namespace MscrmTools.AttributeUsageInspector
             return result;
         }
 
+        private DetectionResults GetUsageFromFetchXMLQuery(EntityMetadata emd, Settings settings, BackgroundWorker worker = null)
+        {
+            QueryExpression query = ConvertFetchXMLtoQuery(settings.FetchXMLQuery);
+            query.NoLock = true;
+            query.PageInfo = new PagingInfo
+            {
+                Count = settings.RecordsReturnedPerTrip,
+                PageNumber = 1
+            };
+            DataCollection<string> attributes = query.ColumnSet.Columns;
+
+            EntityCollection ec;
+            Dictionary<string, int> attributesCount = new Dictionary<string, int>();
+            int total = 0;
+            do
+            {
+                ec = service.RetrieveMultiple(query);
+                total += ec.Entities.Count;
+                query.PageInfo.PageNumber++;
+                query.PageInfo.PagingCookie = ec.PagingCookie;
+
+                worker?.ReportProgress(0, string.Format("{0} records retrieved...", total));
+
+                foreach (var record in ec.Entities)
+                {
+                    foreach (var attribute in attributes)
+                    {
+                        if (!record.Contains(attribute))
+                            continue;
+                        
+                        if (!attributesCount.ContainsKey(attribute))
+                        {
+                            attributesCount.Add(attribute, 0);
+                        }
+                        attributesCount[attribute] = attributesCount[attribute] + 1;
+                    }
+                }
+            } while (ec.MoreRecords && Cancel == false);
+
+            DetectionResults result = new DetectionResults();
+            result.Total = total;
+            result.Entity = query.EntityName;
+
+            foreach (var key in attributesCount.Keys)
+            {
+                result.Results.Add(new DetectionResult
+                {
+                    Attribute = MetadataHelper.GetMetadataAttribute(emd.Attributes, key),
+                    NotNull = attributesCount[key],
+                    Percentage = result.Total != 0 ? attributesCount[key] * 100 / (double)result.Total : 0
+                });
+            }
+
+            return result;
+        }
+
+        private QueryExpression ConvertFetchXMLtoQuery(string fetchXMLQuery)
+        {
+            FetchXmlToQueryExpressionRequest conversionRequest = new FetchXmlToQueryExpressionRequest
+            {
+                FetchXml = fetchXMLQuery
+            };
+
+            FetchXmlToQueryExpressionResponse conversionResponse =
+                (FetchXmlToQueryExpressionResponse)service.Execute(conversionRequest);
+
+            QueryExpression queryExpression = conversionResponse.Query;
+
+            return queryExpression;
+        }
+
         public DetectionResults GetUsage(EntityMetadata emd, bool useStdQueries, Settings settings, BackgroundWorker worker = null)
         {
-            if (useStdQueries)
+            if (settings.UseFetchXMLQuery)
+            {
+                return GetUsageFromFetchXMLQuery(emd, settings, worker);
+            }
+            else if (useStdQueries)
             {
                 if (settings.UseSQLQuery)
                 {
