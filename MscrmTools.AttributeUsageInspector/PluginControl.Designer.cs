@@ -87,7 +87,6 @@ namespace MscrmTools.AttributeUsageInspector
             // 
             // tsMain
             // 
-            this.tsMain.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbClose,
             this.toolStripSeparator1,
@@ -100,7 +99,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.tsbCancel});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(1631, 32);
+            this.tsMain.Size = new System.Drawing.Size(1631, 37);
             this.tsMain.TabIndex = 0;
             this.tsMain.Text = "tsMain";
             // 
@@ -110,35 +109,35 @@ namespace MscrmTools.AttributeUsageInspector
             this.tsbClose.Image = ((System.Drawing.Image)(resources.GetObject("tsbClose.Image")));
             this.tsbClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClose.Name = "tsbClose";
-            this.tsbClose.Size = new System.Drawing.Size(28, 29);
+            this.tsbClose.Size = new System.Drawing.Size(28, 34);
             this.tsbClose.Text = "Close";
             this.tsbClose.Click += new System.EventHandler(this.tsbClose_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 32);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 37);
             // 
             // tsbLoadEntities
             // 
             this.tsbLoadEntities.Image = ((System.Drawing.Image)(resources.GetObject("tsbLoadEntities.Image")));
             this.tsbLoadEntities.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbLoadEntities.Name = "tsbLoadEntities";
-            this.tsbLoadEntities.Size = new System.Drawing.Size(140, 29);
+            this.tsbLoadEntities.Size = new System.Drawing.Size(159, 34);
             this.tsbLoadEntities.Text = "Load Entities";
             this.tsbLoadEntities.Click += new System.EventHandler(this.tsbLoadEntities_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 32);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 37);
             // 
             // tsbExportToExcel
             // 
             this.tsbExportToExcel.Image = ((System.Drawing.Image)(resources.GetObject("tsbExportToExcel.Image")));
             this.tsbExportToExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbExportToExcel.Name = "tsbExportToExcel";
-            this.tsbExportToExcel.Size = new System.Drawing.Size(157, 29);
+            this.tsbExportToExcel.Size = new System.Drawing.Size(180, 34);
             this.tsbExportToExcel.Text = "Export To Excel";
             this.tsbExportToExcel.ToolTipText = "Export checked entities data usage to Excel Spreadsheet";
             this.tsbExportToExcel.Click += new System.EventHandler(this.tsbExportToExcel_Click);
@@ -146,7 +145,7 @@ namespace MscrmTools.AttributeUsageInspector
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 32);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 37);
             // 
             // tsbSettings
             // 
@@ -154,7 +153,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.tsbSettings.Image = ((System.Drawing.Image)(resources.GetObject("tsbSettings.Image")));
             this.tsbSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSettings.Name = "tsbSettings";
-            this.tsbSettings.Size = new System.Drawing.Size(28, 29);
+            this.tsbSettings.Size = new System.Drawing.Size(28, 34);
             this.tsbSettings.Text = "Settings";
             this.tsbSettings.ToolTipText = "Define number of records returned per call";
             this.tsbSettings.Click += new System.EventHandler(this.tsbSettings_Click);
@@ -162,7 +161,7 @@ namespace MscrmTools.AttributeUsageInspector
             // tssCancel
             // 
             this.tssCancel.Name = "tssCancel";
-            this.tssCancel.Size = new System.Drawing.Size(6, 32);
+            this.tssCancel.Size = new System.Drawing.Size(6, 37);
             this.tssCancel.Visible = false;
             // 
             // tsbCancel
@@ -170,7 +169,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.tsbCancel.Image = global::MscrmTools.AttributeUsageInspector.Properties.Resources.cancel;
             this.tsbCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCancel.Name = "tsbCancel";
-            this.tsbCancel.Size = new System.Drawing.Size(91, 29);
+            this.tsbCancel.Size = new System.Drawing.Size(103, 34);
             this.tsbCancel.Text = "Cancel";
             this.tsbCancel.ToolTipText = "Clicking on this button will stop data loading and perform analysis on records re" +
     "trieved so far";
@@ -180,7 +179,7 @@ namespace MscrmTools.AttributeUsageInspector
             // scInspector
             // 
             this.scInspector.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scInspector.Location = new System.Drawing.Point(0, 32);
+            this.scInspector.Location = new System.Drawing.Point(0, 37);
             this.scInspector.Name = "scInspector";
             // 
             // scInspector.Panel1
@@ -190,7 +189,7 @@ namespace MscrmTools.AttributeUsageInspector
             // scInspector.Panel2
             // 
             this.scInspector.Panel2.Controls.Add(this.gbData);
-            this.scInspector.Size = new System.Drawing.Size(1631, 934);
+            this.scInspector.Size = new System.Drawing.Size(1631, 929);
             this.scInspector.SplitterDistance = 543;
             this.scInspector.TabIndex = 1;
             // 
@@ -201,7 +200,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.gbEntities.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbEntities.Location = new System.Drawing.Point(0, 0);
             this.gbEntities.Name = "gbEntities";
-            this.gbEntities.Size = new System.Drawing.Size(543, 934);
+            this.gbEntities.Size = new System.Drawing.Size(543, 929);
             this.gbEntities.TabIndex = 0;
             this.gbEntities.TabStop = false;
             this.gbEntities.Text = "Entities";
@@ -215,9 +214,9 @@ namespace MscrmTools.AttributeUsageInspector
             this.lvEntities.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvEntities.FullRowSelect = true;
             this.lvEntities.HideSelection = false;
-            this.lvEntities.Location = new System.Drawing.Point(3, 48);
+            this.lvEntities.Location = new System.Drawing.Point(3, 51);
             this.lvEntities.Name = "lvEntities";
-            this.lvEntities.Size = new System.Drawing.Size(537, 883);
+            this.lvEntities.Size = new System.Drawing.Size(537, 875);
             this.lvEntities.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvEntities.TabIndex = 2;
             this.lvEntities.UseCompatibleStateImageBehavior = false;
@@ -240,7 +239,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.txtSearch);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(3, 22);
+            this.panel2.Location = new System.Drawing.Point(3, 25);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(537, 26);
             this.panel2.TabIndex = 1;
@@ -250,7 +249,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(3, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 20);
+            this.label4.Size = new System.Drawing.Size(75, 25);
             this.label4.TabIndex = 1;
             this.label4.Text = "Search";
             // 
@@ -260,7 +259,7 @@ namespace MscrmTools.AttributeUsageInspector
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Location = new System.Drawing.Point(108, 3);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(429, 26);
+            this.txtSearch.Size = new System.Drawing.Size(429, 29);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -272,7 +271,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.gbData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbData.Location = new System.Drawing.Point(0, 0);
             this.gbData.Name = "gbData";
-            this.gbData.Size = new System.Drawing.Size(1084, 934);
+            this.gbData.Size = new System.Drawing.Size(1084, 929);
             this.gbData.TabIndex = 1;
             this.gbData.TabStop = false;
             this.gbData.Text = "Data";
@@ -282,9 +281,9 @@ namespace MscrmTools.AttributeUsageInspector
             this.pnlData.Controls.Add(this.dgvData);
             this.pnlData.Controls.Add(this.pnlFilterInfo);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlData.Location = new System.Drawing.Point(3, 22);
+            this.pnlData.Location = new System.Drawing.Point(3, 25);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(1078, 889);
+            this.pnlData.Size = new System.Drawing.Size(1078, 881);
             this.pnlData.TabIndex = 7;
             // 
             // dgvData
@@ -302,7 +301,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.dgvData.Name = "dgvData";
             this.dgvData.ReadOnly = true;
             this.dgvData.RowTemplate.Height = 28;
-            this.dgvData.Size = new System.Drawing.Size(1078, 852);
+            this.dgvData.Size = new System.Drawing.Size(1078, 844);
             this.dgvData.TabIndex = 7;
             this.dgvData.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_ColumnHeaderMouseClick);
             // 
@@ -349,7 +348,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.lblFilterInfo.AutoSize = true;
             this.lblFilterInfo.Location = new System.Drawing.Point(5, 5);
             this.lblFilterInfo.Name = "lblFilterInfo";
-            this.lblFilterInfo.Size = new System.Drawing.Size(704, 20);
+            this.lblFilterInfo.Size = new System.Drawing.Size(856, 25);
             this.lblFilterInfo.TabIndex = 1;
             this.lblFilterInfo.Text = "You can filter attributes displayed by enabling attributes filtering in settings," +
     " then selecting an entity.";
@@ -360,7 +359,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.label5.Dock = System.Windows.Forms.DockStyle.Left;
             this.label5.Location = new System.Drawing.Point(0, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 20);
+            this.label5.Size = new System.Drawing.Size(0, 25);
             this.label5.TabIndex = 0;
             this.label5.Tag = "Statistics based on {0} records";
             // 
@@ -375,9 +374,9 @@ namespace MscrmTools.AttributeUsageInspector
             this.pnlAggregateQueryRecordLimit.Controls.Add(this.label1);
             this.pnlAggregateQueryRecordLimit.Controls.Add(this.lblAggregateQueryRecordLimit);
             this.pnlAggregateQueryRecordLimit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlAggregateQueryRecordLimit.Location = new System.Drawing.Point(3, 22);
+            this.pnlAggregateQueryRecordLimit.Location = new System.Drawing.Point(3, 25);
             this.pnlAggregateQueryRecordLimit.Name = "pnlAggregateQueryRecordLimit";
-            this.pnlAggregateQueryRecordLimit.Size = new System.Drawing.Size(1078, 889);
+            this.pnlAggregateQueryRecordLimit.Size = new System.Drawing.Size(1078, 881);
             this.pnlAggregateQueryRecordLimit.TabIndex = 2;
             this.pnlAggregateQueryRecordLimit.Visible = false;
             // 
@@ -480,7 +479,7 @@ namespace MscrmTools.AttributeUsageInspector
             // 
             this.panel1.Controls.Add(this.lblCount);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 911);
+            this.panel1.Location = new System.Drawing.Point(3, 906);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1078, 20);
             this.panel1.TabIndex = 1;
@@ -491,7 +490,7 @@ namespace MscrmTools.AttributeUsageInspector
             this.lblCount.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblCount.Location = new System.Drawing.Point(0, 0);
             this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(0, 20);
+            this.lblCount.Size = new System.Drawing.Size(0, 25);
             this.lblCount.TabIndex = 0;
             this.lblCount.Tag = "Statistics based on {0} records";
             // 
